@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Roadtrip</title>
+<title>Nossas memórias</title>
 <meta name="description" content="Diário fotográfico da nossa roadtrip Goiânia → São Paulo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -411,9 +411,376 @@ textarea.serif{font-family:var(--head);font-weight:300;font-size:18px}
 .lightbox .close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:999px;width:42px;height:42px;font-size:22px}
 .lightbox .lcap{position:absolute;left:16px;right:70px;bottom:16px;color:#fff;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;opacity:.85}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(86px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:999px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;z-index:50;box-shadow:var(--shadow);max-width:90vw;text-align:center}
+.fan a img{position:absolute;inset:0}
+.fan a img.rt{filter:saturate(.55) brightness(.8)}
+.fan a .fav,.tile .favb{position:absolute;top:6px;right:18%;width:22px;height:22px;border-radius:50%;background:var(--sun);color:#fff;display:grid;place-items:center;font-size:12px;font-style:normal;z-index:2}
+.tile .favb{right:6px}
+.lbacts{position:absolute;top:14px;left:14px;right:70px;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
+.lbacts button{border:0;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;padding:10px 14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.lbacts button.on{background:var(--sun)}
+.ro .lbacts{display:none}
+/* ---------- CASCA: Nosso ano · Viagens · Álbuns ---------- */
+.testbar{background:#C8D85A;color:#171719;text-align:center;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:6px 12px}
+.shell{background:var(--night);color:#F2EEE6;position:sticky;top:0;z-index:25}
+.shell .wrap{display:flex;align-items:center;gap:10px;padding-block:10px;flex-wrap:wrap}
+.shell .sbrand{font-family:var(--head);font-weight:800;font-size:22px;letter-spacing:-.02em;margin-right:6px;white-space:nowrap}
+.shell .sbrand i{font-style:italic;font-weight:300}
+.stabs{display:flex;gap:4px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.stabs::-webkit-scrollbar{display:none}
+.stabs button{flex:none;border:1px solid rgba(242,238,230,.25);background:transparent;color:#F2EEE6;border-radius:999px;padding:8px 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.stabs button.on{background:#F2EEE6;color:#171719;border-color:#F2EEE6}
+.shell .scolors{border:1px solid rgba(242,238,230,.25);background:transparent;color:#F2EEE6;border-radius:999px;width:36px;height:36px;display:grid;place-items:center;flex:none}
+.shell .scolors svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.presenca-btn{border:0;background:var(--sun);color:var(--paper);border-radius:999px;padding:9px 16px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.presenca-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:640px){ .shell .wrap{gap:8px} .stabs{order:3;flex-basis:100%} .shell .presenca-btn{margin-left:auto} }
+.sview{padding-block:28px 140px}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.shead h2{font-size:clamp(38px,6vw,68px);letter-spacing:-.03em;font-weight:800}
+.shead h2 i{font-weight:300}
+.shead .acts{display:flex;gap:8px;flex-wrap:wrap}
+.ystats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:22px}
+.ystats div{background:var(--white);border:1px solid var(--line);padding:12px 14px}
+.ystats b{display:block;font-family:var(--head);font-weight:800;font-size:30px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ystats span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.yselect{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:8px 12px;font-weight:700}
+/* bandeja sem data */
+.tray{background:var(--paper-2);border:2px dashed var(--line);border-radius:12px;padding:12px 14px;margin-bottom:22px}
+.tray.dropover{border-color:var(--sun)}
+.tray h3{font-family:var(--ui);font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink-2);margin-bottom:10px}
+.tray .row{display:flex;gap:8px;flex-wrap:wrap}
+/* fotos arrastáveis */
+.yph{position:relative;width:96px;height:96px;border:0;padding:0;background:var(--paper-2);overflow:hidden;border-radius:6px;cursor:grab;touch-action:none;flex:none}
+.yph img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
+.yph .ex{position:absolute;left:4px;top:4px;font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;background:rgba(255,255,255,.9);color:#171719;padding:2px 5px;border-radius:999px}
+.yph.sel{outline:3px solid var(--sun);outline-offset:-3px}
+.yph.sel::after{content:"✓";position:absolute;right:4px;top:4px;width:20px;height:20px;border-radius:50%;background:var(--sun);color:var(--paper);display:grid;place-items:center;font-size:12px;font-weight:700}
+.yph.dragging{opacity:.3}
+.dragghost{position:fixed;z-index:60;width:84px;height:84px;border-radius:8px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.35);pointer-events:none;transform:translate(-50%,-50%) rotate(-4deg);border:3px solid #fff}
+.dragghost img{width:100%;height:100%;object-fit:cover}
+.dragghost b{position:absolute;right:4px;bottom:4px;background:var(--sun);color:var(--paper);border-radius:999px;font-size:11px;padding:1px 6px}
+/* linha do tempo do ano */
+.ymonth{border-top:1px solid var(--ink);padding-block:22px 6px}
+.ymonth > .mh{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;border-radius:8px;padding:2px 0}
+.ymonth > .mh h3{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em}
+.ymonth > .mh span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.dropover{background:color-mix(in srgb,var(--sun) 14%,transparent)!important;outline:2px dashed var(--sun);outline-offset:4px}
+.yday{display:grid;grid-template-columns:76px 1fr;gap:14px;padding:10px 0;border-top:1px dashed var(--line);border-radius:8px}
+.yday:first-of-type{border-top:0}
+.yday .dl{font-family:var(--head);font-weight:800;font-size:30px;line-height:1;color:var(--sun);font-variant-numeric:tabular-nums}
+.yday .dl small{display:block;font-family:var(--ui);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:4px}
+.yday .items{display:grid;gap:12px;min-width:0}
+@media (max-width:560px){ .yday{grid-template-columns:52px 1fr;gap:10px} .yday .dl{font-size:24px} .yph{width:78px;height:78px} }
+.ymom{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:8px;min-width:0}
+.ymom.presence{border-left:4px solid var(--sun)}
+.ymom .top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.ymom .top b{font-family:var(--head);font-size:20px;font-weight:700;letter-spacing:-.01em}
+.ymom .top .t{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.ymom .top .tag{font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--sun)}
+.ymom .ph{display:flex;gap:6px;flex-wrap:wrap}
+.ymom .txt{font-family:var(--head);font-weight:300;font-size:17px;color:var(--ink-2);margin:0;white-space:pre-wrap}
+.ymom .ft{display:flex;gap:4px;justify-content:flex-end;flex-wrap:wrap}
+.ytrip{display:flex;gap:12px;align-items:center;background:var(--ink);color:var(--paper);border-radius:10px;padding:10px 12px;flex-wrap:wrap}
+.ytrip .tt{flex:1;min-width:160px}
+.ytrip .tt small{display:block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;opacity:.7}
+.ytrip .tt b{font-family:var(--head);font-size:18px}
+.ytrip .th{display:flex;gap:4px}
+.ytrip .th img{width:52px;height:52px;object-fit:cover;border-radius:4px;background:rgba(255,255,255,.1)}
+.ytrip button{border:1px solid color-mix(in srgb,var(--paper) 50%,transparent);background:transparent;color:var(--paper);border-radius:999px;padding:6px 12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.emptymonths{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.emptymonths span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--muted);align-self:center;margin-right:4px}
+.emptymonths .em{border:1px dashed var(--line);border-radius:999px;padding:6px 12px;font-size:11px;font-weight:700;color:var(--ink-2);background:transparent}
+.selbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:30;background:var(--ink);color:var(--paper);border-radius:14px;padding:10px 12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;box-shadow:var(--shadow);width:min(720px,calc(100% - 24px))}
+.selbar .n{font-weight:700;font-size:13px;margin-right:auto}
+.selbar input{border:0;border-radius:8px;padding:8px 10px;color:#171719;background:#F2EEE6}
+.selbar .btn{background:transparent;color:var(--paper);border-color:color-mix(in srgb,var(--paper) 40%,transparent)}
+.selbar .btn.go{background:var(--sun);border-color:var(--sun)}
+.sfab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;box-shadow:var(--shadow);padding:14px 20px}
+/* viagens */
+.tcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.tcard{position:relative;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:#222;color:#fff;box-shadow:var(--shadow);border:0;padding:0;text-align:left;cursor:pointer;display:block;width:100%}
+.tcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.7)}
+.tcard .g{position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.85))}
+.tcard .in{position:absolute;left:16px;right:16px;bottom:16px}
+.tcard .in small{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;opacity:.85}
+.tcard .in b{display:block;font-family:var(--head);font-weight:800;font-size:32px;line-height:1;letter-spacing:-.02em;margin:6px 0 8px}
+.tcard .in span{font-size:12px;opacity:.85}
+.tcard .del{position:absolute;right:10px;top:10px;border:0;background:rgba(0,0,0,.45);color:#fff;border-radius:999px;padding:5px 10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.tcard.new{background:transparent;border:2px dashed var(--line);color:var(--ink-2);box-shadow:none;display:grid;place-items:center;text-align:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.tcard.new b{font-family:var(--head);font-size:48px;letter-spacing:0;display:block;color:var(--sun)}
+.minilist{margin-top:26px;font-size:13px;color:var(--ink-2)}
+.minilist li{margin:6px 0}
+/* álbuns */
+.abuild{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:14px;margin-bottom:26px}
+.abuild h3{font-size:26px;letter-spacing:-.02em}
+.amodes,.achips,.atpls{display:flex;gap:6px;flex-wrap:wrap}
+.amodes button,.achips button,.atpls button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:7px 13px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.amodes button.on,.achips button.on,.atpls button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.achips button small{opacity:.7;margin-left:4px}
+.apreview{display:flex;gap:5px;flex-wrap:wrap;max-height:330px;overflow:auto;padding:4px;background:var(--paper-2);border-radius:10px}
+.apreview .ap{width:74px;height:74px;border:0;padding:0;border-radius:5px;overflow:hidden;position:relative;background:var(--line)}
+.apreview .ap img{width:100%;height:100%;object-fit:cover;display:block}
+.apreview .ap.off img{opacity:.25;filter:grayscale(1)}
+.apreview .ap.off::after{content:"fora";position:absolute;inset:auto 0 4px;text-align:center;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink)}
+.acount{font-size:13px;color:var(--ink-2)}
+.acount b{font-family:var(--head);font-size:22px;color:var(--ink)}
+.alist{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.acard{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:grid}
+.acard .cv{height:120px;display:grid;grid-template-columns:2fr 1fr;gap:2px;background:var(--paper-2)}
+.acard .cv img{width:100%;height:100%;object-fit:cover;display:block}
+.acard .cv div{display:grid;gap:2px}
+.acard .bd{padding:12px 14px;display:grid;gap:6px}
+.acard .bd b{font-family:var(--head);font-size:20px}
+.acard .bd small{color:var(--muted);font-size:12px}
+.acard .bd .r{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+/* presença */
+.pres-prev{width:100%;max-height:260px;object-fit:cover;border-radius:10px;display:block;background:var(--paper-2)}
+.places{display:grid;gap:6px;max-height:300px;overflow:auto}
+.places label{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--white);cursor:pointer}
+.places label:has(input:checked){border-color:var(--sun);outline:1px solid var(--sun)}
+.places label b{display:block;font-size:14px}
+.places label small{display:block;font-size:12px;color:var(--muted)}
+.places label .dist{margin-left:auto;font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap}
+.ph-edit-prev{width:100%;max-height:300px;object-fit:contain;background:var(--paper-2);border-radius:10px;display:block}
+.tripback{border:1px solid var(--line);background:transparent;border-radius:999px;padding:7px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.yph{touch-action:auto;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.yph.sm,.ytrip .yph{width:52px;height:52px;border-radius:4px}
+.yph.sm .ex{display:none}
+body.dragmode,body.dragmode *{cursor:grabbing!important;-webkit-user-select:none;user-select:none}
+.in-trip .shell{position:relative}
+.yhint{font-size:12.5px;color:var(--muted);margin:-8px 0 8px}
+.yempty{font-size:13px;color:var(--muted)}
+.yempty.big{padding:30px 0;font-family:var(--head);font-size:22px;color:var(--ink-2)}
+.yplace{display:inline-flex;gap:5px;align-items:center;font-size:13px;color:var(--ink-2);text-decoration:none;font-weight:600}
+.yplace svg,.ymom .ft svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.ytrip .tsub{display:block;font-size:12px;opacity:.75}
+.ytrip .th{flex-wrap:wrap}
+.ytrash{margin-top:28px;font-size:13px;color:var(--ink-2)}
+.ytrash summary{cursor:pointer;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.ytrash li,.minilist li{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ytrash ul,.minilist ul{list-style:none;padding:0}
+.ytrash img{width:40px;height:40px;object-fit:cover;border-radius:4px}
+.chk{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--ink-2)}
+.mothumb{position:relative;width:70px;height:70px;border-radius:6px;overflow:hidden;background:var(--paper-2)}
+.mothumb img{width:100%;height:100%;object-fit:cover}
+.mothumb button{position:absolute;right:3px;top:3px;width:22px;height:22px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;line-height:1;font-size:15px}
+.abuild .field{margin:0}
+.apreview:empty{display:none}
+.atpls .sw{display:inline-flex;margin-right:6px;vertical-align:middle}
+.atpls .sw i{width:10px;height:10px;border-radius:50%;margin-right:-3px;border:1px solid rgba(0,0,0,.15)}
+.abdates{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.abdates .field{min-width:150px}
+.tcard{font:inherit}
+.shead h2 .yselect{font:700 15px var(--ui);letter-spacing:.04em;width:auto!important;display:inline-block;vertical-align:middle;padding:8px 12px;margin-left:6px;color:var(--ink)}
+.places label{text-transform:none;letter-spacing:0;font-size:14px;font-weight:400;color:var(--ink);margin:0}
+.places label b{font-weight:700;color:var(--ink)}
+.places label input{width:auto;flex:none}
+.chk input{width:auto}
+@media (max-width:640px){
+  .testbar{font-size:9px;letter-spacing:.1em;padding:4px 10px}
+  .shell .wrap{padding-block:8px;row-gap:8px}
+  .shell .sbrand{font-size:18px;margin-right:0}
+  .shell .scolors{width:32px;height:32px;margin-left:auto}
+  .shell .presenca-btn{margin-left:0;padding:8px 12px;font-size:10px;letter-spacing:.12em}
+  .presenca-btn .lg{display:none}
+  .stabs button{padding:6px 11px;font-size:10px;letter-spacing:.12em}
+  .ystats{grid-template-columns:repeat(3,1fr);gap:6px}
+  .ystats div{padding:9px 10px}
+  .ystats b{font-size:22px}
+  .ystats span{font-size:8.5px;letter-spacing:.12em}
+  .shead .acts .pill{padding:7px 11px}
+}
+@media (max-width:640px){ .tcard{aspect-ratio:16/11} .tcard.new{aspect-ratio:auto;min-height:110px} .tcard .in b{font-size:26px} }
+.ro .ed,body.ro .ed{display:none!important}
+.ro .yph{cursor:zoom-in}
+.ronote2{display:none;background:var(--ink);color:var(--paper);text-align:center;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:6px 12px}
+.ro .ronote2{display:block}
+.shell .scolors + .scolors{margin-left:0}
+
 </style>
 </head>
 <body>
+<div class="ronote2">Modo visualização · para editar, conecte a chave em Nuvem</div>
+<div class="shell" id="shell">
+  <div class="wrap">
+    <div class="sbrand">Nossas <i>memórias</i></div>
+    <div class="stabs" id="stabs">
+      <button type="button" data-sv="ano" class="on">Nosso ano</button>
+      <button type="button" data-sv="viagens">Viagens</button>
+      <button type="button" data-sv="albuns">Álbuns</button>
+    </div>
+    <button type="button" class="scolors" id="btnColors" title="Cores"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.3"/><circle cx="12" cy="7.5" r="1.3"/><circle cx="15.5" cy="10" r="1.3"/><path d="M12 21a3 3 0 0 1 0-6h2"/></svg></button>
+    <button type="button" class="scolors" id="btnCloud2" title="Nuvem"><svg viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9a4 4 0 0 1 0 9z"/></svg></button>
+    <button type="button" class="presenca-btn ed" id="btnPresenca"><svg viewBox="0 0 24 24"><path d="M12 22s7-7.1 7-12a7 7 0 1 0-14 0c0 4.9 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="lg">Marcar </span>presença</button>
+  </div>
+</div>
+<input type="file" id="presencaCam" accept="image/*" capture="environment" hidden>
+<input type="file" id="yFiles" accept="image/*" multiple hidden>
+<input type="file" id="mFiles" accept="image/*" multiple hidden>
+
+<!-- PARTE 1: nosso ano -->
+<section class="sview" id="shellAno">
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="eyebrow">Parte 1 · como foi o ano</div><h2>Nosso <i>ano</i> <select class="yselect" id="ySelect" aria-label="Ano"></select></h2></div>
+      <div class="acts">
+        <button type="button" class="pill ed" id="yAddMoment">+ Momento</button>
+        <button type="button" class="pill ed" id="yAddPhotos">Adicionar fotos</button>
+        <button type="button" class="pill ed" id="ySelectMode">Selecionar</button>
+      </div>
+    </div>
+    <div class="ystats" id="yStats"></div>
+    <div class="tray" id="yTray" data-drop="inbox">
+      <h3>Sem data <span id="yTrayN"></span></h3>
+      <div class="row" id="yTrayRow"></div>
+    </div>
+    <p class="yhint ed">Arraste uma foto para qualquer dia, mês ou para "Sem data". No celular, segure a foto meio segundo e arraste. Toque na foto para mudar a data, a hora ou a legenda.</p>
+    <div id="yTimeline"></div>
+    <details class="ytrash ed" id="yTrash"></details>
+  </div>
+</section>
+
+<!-- PARTE 2: viagens e experiências -->
+<section class="sview" id="shellViagens" hidden>
+  <div class="wrap">
+    <div class="shead">
+      <div><div class="eyebrow">Parte 2 · experiências</div><h2>Nossas <i>viagens</i></h2></div>
+    </div>
+    <div class="tcards" id="tCards"></div>
+    <div class="minilist" id="tTrash"></div>
+  </div>
+</section>
+
+<!-- PARTE 3: álbuns -->
+<section class="sview" id="shellAlbuns" hidden>
+  <div class="wrap">
+    <div class="shead"><div><div class="eyebrow">Parte 3 · álbuns</div><h2>Nossos <i>álbuns</i></h2></div></div>
+    <div class="abuild">
+      <h3 id="abTitle">Montar álbum</h3>
+      <div class="field"><label for="abName">Nome do álbum</label><input type="text" id="abName" maxlength="60" placeholder="ex.: Outubro de 2026"></div>
+      <div class="field"><span class="lbl">Como escolher as fotos</span>
+        <div class="amodes" id="abModes">
+          <button type="button" data-amode="periodo" class="on">Período</button>
+          <button type="button" data-amode="meses">Meses</button>
+          <button type="button" data-amode="viagens">Viagens</button>
+          <button type="button" data-amode="fotos">Escolher fotos</button>
+        </div>
+      </div>
+      <div id="abOpts"></div>
+      <div class="acount" id="abCount"></div>
+      <div class="apreview" id="abPreview"></div>
+      <div class="field"><span class="lbl">Modelo</span><div class="atpls" id="abTpls"></div></div>
+      <div class="field"><span class="lbl">Cores</span><div class="atpls" id="abThemes"></div></div>
+      <label class="chk"><input type="checkbox" id="abEx" checked> Incluir fotos de exemplo</label>
+      <div class="actions" style="justify-content:flex-start">
+        <button type="button" class="btn ed" id="abSave">Salvar álbum</button>
+        <button type="button" class="btn primary" id="abPdf">Gerar PDF</button>
+        <button type="button" class="btn" id="abNew" hidden>Novo álbum</button>
+      </div>
+      <div class="acount" id="abStatus"></div>
+    </div>
+    <div class="eyebrow" style="margin-bottom:10px">Álbuns salvos</div>
+    <div class="alist" id="abList"></div>
+  </div>
+</section>
+
+<!-- Painel: momento -->
+<div class="sheet" id="sheetMoment" hidden>
+  <form class="panel" id="formMoment">
+    <div class="grab"></div>
+    <h2 id="momTitle">Novo momento</h2>
+    <div class="row3">
+      <div class="field"><label for="moDate">Data</label><input type="date" id="moDate" required></div>
+      <div class="field"><label for="moTime">Hora</label><input type="time" id="moTime"></div>
+      <div class="field"></div>
+    </div>
+    <div class="field"><label for="moName">Título</label><input type="text" id="moName" maxlength="90" placeholder="ex.: Café da manhã de domingo"></div>
+    <div class="field"><label for="moPlace">Lugar</label><input type="text" id="moPlace" placeholder="Nome, endereço ou link do Google Maps"></div>
+    <div class="field"><label for="moText">Comentário</label><textarea id="moText" rows="3" placeholder="O que a gente achou"></textarea></div>
+    <div class="field"><span class="lbl">Fotos</span><div class="row" id="moPhotos" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+      <div class="filepick" style="margin-top:8px"><span id="moPickLabel">Adicionar fotos</span><input type="file" id="moFiles" accept="image/*" multiple aria-label="Fotos do momento"></div>
+      <div class="hint">Depois dá para arrastar cada foto para outro dia.</div>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn danger" id="moDelete" hidden>Excluir</button>
+      <button type="button" class="btn" id="moCancel">Cancelar</button>
+      <button type="submit" class="btn primary">Salvar</button>
+    </div>
+  </form>
+</div>
+
+<!-- Painel: foto -->
+<div class="sheet" id="sheetPhoto" hidden>
+  <form class="panel" id="formPhoto">
+    <div class="grab"></div>
+    <h2>Foto</h2>
+    <img class="ph-edit-prev" id="phPrev" alt="">
+    <div class="hint" id="phFrom"></div>
+    <div class="row3">
+      <div class="field"><label for="phDate">Data</label><input type="date" id="phDate"></div>
+      <div class="field"><label for="phTime">Hora</label><input type="time" id="phTime"></div>
+      <div class="field"><span class="lbl">Atalhos</span><div style="display:flex;gap:6px;flex-wrap:wrap"><button type="button" class="pill" id="phToday">Hoje</button><button type="button" class="pill" id="phFileDate" hidden>Data do arquivo</button></div></div>
+    </div>
+    <div class="field"><label for="phCap">Legenda</label><input type="text" id="phCap" maxlength="120"></div>
+    <div class="actions">
+      <button type="button" class="btn danger" id="phDelete">Excluir</button>
+      <button type="button" class="btn" id="phInbox">Mover para Sem data</button>
+      <button type="button" class="btn" id="phCancel">Cancelar</button>
+      <button type="submit" class="btn primary">Salvar</button>
+    </div>
+  </form>
+</div>
+
+<!-- Painel: marcar presença -->
+<div class="sheet" id="sheetPresenca" hidden>
+  <form class="panel" id="formPresenca">
+    <div class="grab"></div>
+    <h2>Marcar presença</h2>
+    <img class="pres-prev" id="prPrev" alt="">
+    <div class="filepick" style="margin-top:8px"><span id="prPickLabel">Tirar outra foto</span><input type="file" id="prFile" accept="image/*" capture="environment" aria-label="Foto"></div>
+    <div class="hint" id="prGeo">Buscando sua localização...</div>
+    <div class="field"><span class="lbl">Onde vocês estão</span><div class="places" id="prPlaces"></div></div>
+    <div class="field"><label for="prName">Outro nome para o lugar</label><input type="text" id="prName" maxlength="90" placeholder="ex.: Starbucks da Paulista"></div>
+    <div class="field"><label for="prText">Comentário</label><textarea id="prText" rows="2" placeholder="Opcional"></textarea></div>
+    <label class="chk" id="prTripWrap" hidden><input type="checkbox" id="prTrip" checked> <span id="prTripLbl"></span></label>
+    <div class="actions">
+      <button type="button" class="btn" id="prCancel">Cancelar</button>
+      <button type="submit" class="btn primary" id="prSave">Salvar presença</button>
+    </div>
+  </form>
+</div>
+
+<!-- Painel: nova viagem -->
+<div class="sheet" id="sheetNewTrip" hidden>
+  <form class="panel" id="formNewTrip">
+    <div class="grab"></div>
+    <h2>Nova viagem</h2>
+    <div class="field"><label for="ntName">Nome</label><input type="text" id="ntName" maxlength="40" required placeholder="ex.: Chapada dos Veadeiros"></div>
+    <div class="row3">
+      <div class="field"><label for="ntFrom">Início</label><input type="date" id="ntFrom" required></div>
+      <div class="field"><label for="ntTo">Fim</label><input type="date" id="ntTo" required></div>
+      <div class="field"></div>
+    </div>
+    <div class="field"><label for="ntSub">Frase da capa</label><input type="text" id="ntSub" maxlength="90" placeholder="Opcional"></div>
+    <div class="field"><label for="ntWho">Quem vai</label><input type="text" id="ntWho" maxlength="60" placeholder="Opcional"></div>
+    <div class="hint">Cria um dia para cada data. Depois é só preencher a programação, as fotos e os gastos.</div>
+    <div class="actions">
+      <button type="button" class="btn" id="ntCancel">Cancelar</button>
+      <button type="submit" class="btn primary">Criar viagem</button>
+    </div>
+  </form>
+</div>
+
+<div class="selbar" id="selBar" hidden>
+  <span class="n" id="selN">0 fotos</span>
+  <input type="date" id="selDate" aria-label="Nova data">
+  <button type="button" class="btn go" id="selMove">Mover</button>
+  <button type="button" class="btn" id="selInbox">Sem data</button>
+  <button type="button" class="btn" id="selDel">Excluir</button>
+  <button type="button" class="btn" id="selCancel">Cancelar</button>
+</div>
+
+<div id="tripApp" hidden>
 
 <header class="cover" id="top">
   <div class="bg" id="coverBg"></div>
@@ -431,7 +798,7 @@ textarea.serif{font-family:var(--head);font-weight:300;font-size:18px}
 <div class="ronote" id="roNote" hidden>Modo visualização · para editar, conecte sua chave em "Nuvem"</div>
 <div class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top" id="navBrand">Roadtrip</a>
+    <button type="button" class="tripback" id="btnTripBack">← Viagens</button><a class="brand" href="#top" id="navBrand">Roadtrip</a>
     <div class="days" id="navDays"></div><div class="spacer"></div>
     <div class="tools">
       <button class="pill" id="btnFin" title="Financeiro"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg><span class="lbl">Financeiro</span></button>
@@ -516,8 +883,11 @@ textarea.serif{font-family:var(--head);font-weight:300;font-size:18px}
 
 <div class="fab-row">
   <button class="fab near" id="btnNear"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>Perto de mim</button>
+  <button class="fab near" id="btnPresenca2"><svg viewBox="0 0 24 24"><path d="M12 22s7-7.1 7-12a7 7 0 1 0-14 0c0 4.9 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>Presença</button>
   <button class="fab add" id="btnAdd"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Programação</button>
 </div>
+
+</div><!-- /tripApp -->
 
 <!-- Painel: programação -->
 <div class="sheet" id="sheetEntry" hidden>
@@ -601,7 +971,7 @@ textarea.serif{font-family:var(--head);font-weight:300;font-size:18px}
     <p style="margin:0 0 12px;color:var(--ink-2);font-size:14px">Guarda fotos, ingressos e edições no repositório do GitHub do site. Com a chave, este aparelho edita; qualquer aparelho que abra o link vê a versão mais recente.</p>
     <div class="hint" id="cloudInfo" style="margin-bottom:12px"></div>
     <div class="row2">
-      <div class="field"><label for="cOwner">Usuário do GitHub</label><input type="text" id="cOwner" placeholder="ex.: IsabelaeLucas"></div>
+      <div class="field"><label for="cOwner">Usuário do GitHub</label><input type="text" id="cOwner" placeholder="ex.: nome-de-usuario"></div>
       <div class="field"><label for="cRepo">Repositório</label><input type="text" id="cRepo" placeholder="ex.: memories"></div>
     </div>
     <div class="field"><label for="cToken">Chave de acesso (token)</label><input type="text" id="cToken" placeholder="github_pat_..." autocomplete="off"><div class="hint">GitHub &gt; Settings &gt; Developer settings &gt; Personal access tokens &gt; Fine-grained &gt; Generate. Em "Repository access" escolha só este repositório; em "Permissions &gt; Contents" marque Read and write. A chave fica salva só neste aparelho.</div></div>
@@ -693,7 +1063,7 @@ textarea.serif{font-family:var(--head);font-weight:300;font-size:18px}
     <h2>Editar capa</h2>
     <div class="field"><label for="tTitle">Nome da viagem</label><input type="text" id="tTitle" maxlength="40" required></div>
     <div class="field"><label for="tSub">Frase da capa</label><input type="text" id="tSub" maxlength="90"></div>
-    <div class="field"><label for="tWho">Quem vai</label><input type="text" id="tWho" maxlength="60" placeholder="ex.: Jhonatan & Isabela"></div>
+    <div class="field"><label for="tWho">Quem vai</label><input type="text" id="tWho" maxlength="60" placeholder="ex.: os nomes de quem viaja"></div>
     <div class="field">
       <span class="lbl">Foto da capa</span>
       <div class="filepick"><span id="coverPickLabel">Escolher foto da capa</span><input type="file" id="tCover" accept="image/*" aria-label="Foto da capa"></div>
@@ -736,7 +1106,7 @@ textarea.serif{font-family:var(--head);font-weight:300;font-size:18px}
   </div>
 </div>
 
-<div class="lightbox" id="lightbox" hidden><button class="close" id="lbClose" aria-label="Fechar">×</button><img id="lbImg" alt=""><div class="lcap" id="lbCap"></div></div>
+<div class="lightbox" id="lightbox" hidden><div class="lbacts" id="lbActs" hidden><button type="button" id="lbFav"></button><button type="button" id="lbCover"></button></div><button class="close" id="lbClose" aria-label="Fechar">×</button><img id="lbImg" alt=""><div class="lcap" id="lbCap"></div></div>
 
 <script>
 (() => {
@@ -788,7 +1158,7 @@ function seed() {
         { time: '11:00', title: 'Saída do Airbnb Liberdade', cat: 'transporte', loc: L('Avenida da Liberdade, 574, Liberdade, São Paulo - SP') },
         { time: '12:00', title: 'Almoço', cat: 'alimentacao', text: 'Local a definir.', status: 'estimado' },
         { time: '14:00', title: 'Check-in: Airbnb Vila Madalena', cat: 'hospedagem', text: 'Casa aconchegante, ampla e completa, perto do Parque Villa-Lobos.', obs: 'Check-in 14:00, checkout 11:00. Código de confirmação HMHAZSJM29. Anfitriã Ruth: +55 11 92550-6607.', link: AIRBNB2, valor: 260, status: 'pago', loc: L('Rua Doutor Alberto Seabra, 1025, São Paulo - SP, 05452-001') },
-        { time: '16:00', title: 'Roda Rico', cat: 'atracoes', text: 'Cabine Karaokê (8 pessoas), 4ª sessão, 16h00. Portão 2.', obs: 'Abertura dos portões 16:00. Parque Cândido Portinari (Parque Villa-Lobos). Ingresso em nome de Isabela.', ig: 'rodarico', valor: 499.99, status: 'pago', loc: L('Roda Rico, Av. Queiroz Filho, 1365, Vila Hamburguesa, São Paulo - SP') },
+        { time: '16:00', title: 'Roda Rico', cat: 'atracoes', text: 'Cabine Karaokê (8 pessoas), 4ª sessão, 16h00. Portão 2.', obs: 'Abertura dos portões 16:00. Parque Cândido Portinari (Parque Villa-Lobos). Ingresso nominal.', ig: 'rodarico', valor: 499.99, status: 'pago', loc: L('Roda Rico, Av. Queiroz Filho, 1365, Vila Hamburguesa, São Paulo - SP') },
         { time: '18:30', title: 'Cirque du Soleil · Alegría', cat: 'atracoes', text: 'Alegría, In a New Light. Espetáculo às 20:00; chegar às 18:30. VIP Experience.', obs: 'Pedido Eventim 1742520924 (confirmado em 23/04/2026). Ingressos pelo app EVENTIM (Eventim Pass). Bolsão B.', ig: 'cirquedusoleil.br', valor: 3432, status: 'pago', loc: L('Parque Villa-Lobos, Av. Queiroz Filho, 1315 (Bolsão B), Vila Hamburguesa, São Paulo - SP, 05319-075'), media: [{ id: 'alegria', kind: 'image', cap: 'Pôster do Alegría' }] },
       ]),
       d('2026-10-11', 'Gelo, arcade e patins', 'Arena Ice, Arcade Haus, PopHaus e Roller Jam · 43 km', 43, [
@@ -816,9 +1186,11 @@ const store = {
   del(n, k) { return this.tx(n, 'readwrite', s => s.delete(k)); }, keys(n) { return this.tx(n, 'readonly', s => s.getAllKeys()); },
 };
 const state = { data: null, urls: {}, editing: null, pending: [], keep: [], docsPending: [], docsKeep: [], dPending: [], dKeep: [], xDocsPending: [], xDocsKeep: [], coverFile: null, editingDay: null, editingExp: null, finTab: 'todos' };
-let saveT;
-function save() { if (state.ro) return; state.data.updatedAt = Date.now(); clearTimeout(saveT); saveT = setTimeout(flushSave, 60); cloud.scheduleData(); }
-function flushSave() { clearTimeout(saveT); return store.put('kv', 'data4', state.data).catch(() => toast('Não consegui salvar neste navegador')); }
+let saveT; let LIB = null;
+const mx = () => LIB ? (LIB.mext = LIB.mext || {}) : (state.data.mext = state.data.mext || {});
+const extFor = id => { if (LIB && LIB.mext && LIB.mext[id]) return LIB.mext[id]; if (state.data && state.data.mext && state.data.mext[id]) return state.data.mext[id]; if (LIB) for (const t of LIB.trips) if (t.mext && t.mext[id]) return t.mext[id]; return ''; };
+function save() { if (state.ro) return; if (state.data) state.data.updatedAt = Date.now(); if (LIB) LIB.updatedAt = Date.now(); clearTimeout(saveT); saveT = setTimeout(flushSave, 60); cloud.scheduleData(); }
+function flushSave() { clearTimeout(saveT); if (!LIB) return Promise.resolve(); return store.put('kv', 'lib', LIB).catch(() => toast('Não consegui salvar neste navegador')); }
 window.addEventListener('pagehide', flushSave); document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flushSave(); });
 async function mediaUrl(id) {
   if (!id) return '';
@@ -907,7 +1279,8 @@ function dayRouteUrl(items) { const locs = items.filter(e => e.loc && e.loc.labe
 const igUrl = h => 'https://www.instagram.com/' + String(h).replace(/^@/, '').trim();
 const days = () => state.data.days;
 const dayItems = d => d.items.slice().sort((a, b) => ((a.order ?? 1e9) - (b.order ?? 1e9)) || (a.time || '99:99').localeCompare(b.time || '99:99') || (a.createdAt || 0) - (b.createdAt || 0));
-const dayPhotos = d => (d.media || []).filter(m => m.kind === 'image').map(m => ({ ...m, cap: m.cap || d.title })).concat(dayItems(d).flatMap(e => (e.media || []).filter(m => m.kind === 'image').map(m => ({ ...m, cap: m.cap || e.title }))));
+/* foto do dia (favorita) primeiro, depois as fotos de vocês, depois as de exemplo */
+const dayPhotos = d => (d.media || []).filter(m => m.kind === 'image').map(m => ({ ...m, cap: m.cap || d.title })).concat(dayItems(d).flatMap(e => (e.media || []).filter(m => m.kind === 'image').map(m => ({ ...m, cap: m.cap || e.title })))).map((m, i) => [m, i]).sort((a, b) => ((b[0].id === d.coverPh) - (a[0].id === d.coverPh)) || ((a[0].example ? 1 : 0) - (b[0].example ? 1 : 0)) || a[1] - b[1]).map(x => x[0]);
 const findItem = id => { for (const d of days()) { const e = d.items.find(x => x.id === id); if (e) return { d, e }; } return null; };
 const findDay = id => days().find(d => d.id === id);
 const dayIndex = d => days().indexOf(d) + 1;
@@ -927,7 +1300,7 @@ function renderCover() {
   const bg = $('coverBg');
   if (t.coverId) { bg.innerHTML = `<img data-mid="${esc(t.coverId)}" alt="">`; $('coverCredit').textContent = ''; }
   else { bg.innerHTML = `<img src="${EX_COMMONS(COVER_EX)}" alt="" onerror="this.remove()">`; $('coverCredit').innerHTML = `Foto de exemplo: <a href="${EX_PAGE(COVER_EX)}" target="_blank" rel="noopener">Wikimedia Commons</a>`; }
-  $('fan').innerHTML = ds.map((d, i) => { const ph = dayPhotos(d)[0], dt = toDate(d.date); return `<a href="#${d.id}">${ph ? `<img data-mid="${esc(ph.id)}" alt="">` : ''}<span><b>${pad(i + 1)}</b>${dt ? fmtShort(dt) : 'Dia ' + (i + 1)}</span></a>`; }).join('');
+  $('fan').innerHTML = ds.map((d, i) => { const ph = dayPhotos(d)[0], dt = toDate(d.date); return `<a href="#${d.id}">${d.routeId ? `<img class="rt" data-mid="${esc(d.routeId)}" alt="">` : ''}${ph ? `<img data-mid="${esc(ph.id)}" alt="" onerror="this.remove()">` : ''}${ph && ph.id === d.coverPh ? '<i class="fav">★</i>' : ''}<span><b>${pad(i + 1)}</b>${dt ? fmtShort(dt) : 'Dia ' + (i + 1)}</span></a>`; }).join('');
   $('navDays').innerHTML = ds.map((d, i) => { const dt = toDate(d.date); return `<a href="#${d.id}" data-nav="${d.id}"><b>${pad(i + 1)}</b>${dt ? fmtShort(dt) : ''}</a>`; }).join('');
 }
 function renderIntro() {
@@ -964,7 +1337,7 @@ function renderFin() {
 }
 function collageHtml(d) {
   const ph = dayPhotos(d); if (!ph.length) return '';
-  const tiles = ph.slice(0, 8).map((p, i) => `<button class="tile s${i}" type="button" data-lb data-mid="${esc(p.id)}" data-cap="${esc(p.cap)}" aria-label="Ampliar foto"><img data-mid="${esc(p.id)}" alt="${esc(p.cap)}" loading="lazy"${p.example ? ' onerror="this.closest(\'.tile\').remove()"' : ''}>${p.example ? '<span class="ex">Exemplo</span>' : ''}<span class="cap">${esc(p.cap)}</span></button>`);
+  const tiles = ph.slice(0, 8).map((p, i) => `<button class="tile s${i}" type="button" data-lb data-mid="${esc(p.id)}" data-cap="${esc(p.cap)}" aria-label="Ampliar foto"><img data-mid="${esc(p.id)}" alt="${esc(p.cap)}" loading="lazy"${p.example ? ' onerror="this.closest(\'.tile\').remove()"' : ''}>${p.example ? '<span class="ex">Exemplo</span>' : ''}<span class="cap">${esc(p.cap)}</span>${p.id === d.coverPh ? '<i class="favb" title="Foto do dia">★</i>' : ''}</button>`);
   tiles.push(`<button class="slot" type="button" data-dayphotos="${d.id}">${ICON_CAM}Adicionar fotos do dia${ph.length > 8 ? ` · +${ph.length - 8} no álbum` : ''}</button>`);
   return `<div class="collage c-${esc(state.data.collage || 'diagonal')}">${tiles.join('')}</div>`;
 }
@@ -1012,7 +1385,6 @@ async function setView(v) {
   $('btnFin').classList.toggle('on', v === 'financeiro'); $('btnTrash').classList.toggle('on', v === 'lixeira'); $('btnMapa').classList.toggle('on', v === 'mapa');
   if (v === 'mapa') renderMapa();
   if (v !== 'diario') window.scrollTo({ top: 0 }); if (v === 'lixeira') renderTrash(); if (v === 'financeiro') renderFin();
-  try { history.replaceState(null, '', v === 'diario' ? location.pathname : '#' + v); } catch (e) {}
 }
 async function renderAll() { linking.dayId = null; linking.ids = []; applyTheme(); sortDays(); renderCover(); renderIntro(); renderFin(); renderDays(); renderTrash(); fillDaySelects(); await hydrate(document); observeDays(); if (state.view === 'mapa') renderMapa(); }
 function fillDaySelects() { const o = days().map((d, i) => `<option value="${d.id}">Dia ${pad(i + 1)} · ${fmtShort(toDate(d.date))} ${esc(d.title || '')}</option>`).join(''); $('fDay').innerHTML = o; }
@@ -1041,6 +1413,16 @@ $('btnCancelDay').onclick = () => closeSheet('sheetDay'); $('btnCancelTrip').onc
 $('btnCancelEntry').onclick = () => closeSheet('sheetEntry'); $('btnClosePdf').onclick = () => closeSheet('sheetPdf'); $('btnCloseStyle').onclick = () => closeSheet('sheetStyle');
 $('btnPdf').onclick = $('btnPdf2').onclick = () => { $('pdfStatus').textContent = ''; $('pdfBar').style.width = '0'; $('pdfTplName').textContent = ALBUMS[state.data.album || 'editorial'][0]; openSheet('sheetPdf'); };
 $('lbClose').onclick = () => { $('lightbox').hidden = true; };
+/* capinha do dia (foto favorita) e capa da viagem, direto na foto ampliada */
+function lbActs(mid) {
+  state.lbMid = mid; const d = days().find(x => dayPhotos(x).some(p => p.id === mid)); state.lbDay = d ? d.id : null;
+  $('lbActs').hidden = !!state.ro || !d; if (!d) return;
+  const on = d.coverPh === mid, c = state.data.trip.coverId === mid;
+  $('lbFav').classList.toggle('on', on); $('lbFav').textContent = on ? `★ Capinha do dia ${pad(dayIndex(d))}` : `☆ Usar como capinha do dia ${pad(dayIndex(d))}`;
+  $('lbCover').classList.toggle('on', c); $('lbCover').textContent = c ? '★ Capa da viagem' : '☆ Usar como capa da viagem';
+}
+$('lbFav').onclick = async () => { const d = findDay(state.lbDay); if (!d) return; d.coverPh = d.coverPh === state.lbMid ? '' : state.lbMid; save(); lbActs(state.lbMid); await renderAll(); toast(d.coverPh ? `Foto do dia ${pad(dayIndex(d))} definida` : 'A capinha volta a ser a primeira foto do dia'); };
+$('lbCover').onclick = async () => { const t = state.data.trip; t.coverId = t.coverId === state.lbMid ? '' : state.lbMid; save(); lbActs(state.lbMid); await renderAll(); toast(t.coverId ? 'Capa da viagem definida' : 'Capa da viagem removida'); };
 $('lightbox').addEventListener('click', ev => { if (ev.target === $('lightbox')) $('lightbox').hidden = true; });
 const io = new IntersectionObserver(es => { es.forEach(x => { if (x.isIntersecting) { const n = x.target.id; document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('on', a.dataset.nav === n)); } }); }, { rootMargin: '-40% 0px -55% 0px' });
 function observeDays() { io.disconnect(); document.querySelectorAll('.day').forEach(s => io.observe(s)); }
@@ -1056,10 +1438,10 @@ $('btnTrash').onclick = () => setView(state.view === 'lixeira' ? 'diario' : 'lix
 $('btnMapa').onclick = () => setView(state.view === 'mapa' ? 'diario' : 'mapa');
 $('navBrand').addEventListener('click', () => setView('diario'));
 $('navDays').addEventListener('click', ev => { const a = ev.target.closest('a'); if (a && state.view !== 'diario') { setView('diario'); } });
-$('sheetStyle').addEventListener('click', ev => { const th = ev.target.closest('[data-picktheme]'); if (th) { state.data.theme = th.dataset.picktheme; save(); applyTheme(); renderStyles(); return; } const c = ev.target.closest('[data-collage]'), a = ev.target.closest('[data-album]'); if (c) { state.data.collage = c.dataset.collage; save(); renderStyles(); document.querySelectorAll('.collage').forEach(el => { el.className = 'collage c-' + state.data.collage; }); } if (a) { state.data.album = a.dataset.album; save(); renderStyles(); } });
+$('sheetStyle').addEventListener('click', ev => { const th = ev.target.closest('[data-picktheme]'); if (th) { state.data.theme = LIB.theme = th.dataset.picktheme; LIB.trips.forEach(t => { t.theme = LIB.theme; }); save(); applyTheme(); renderStyles(); return; } const c = ev.target.closest('[data-collage]'), a = ev.target.closest('[data-album]'); if (c) { state.data.collage = c.dataset.collage; save(); renderStyles(); document.querySelectorAll('.collage').forEach(el => { el.className = 'collage c-' + state.data.collage; }); } if (a) { state.data.album = a.dataset.album; save(); renderStyles(); } });
 $('btnTrip').onclick = () => { const t = state.data.trip; $('tTitle').value = t.title; $('tSub').value = t.sub || ''; $('tWho').value = t.who || ''; state.coverFile = null; $('coverPickLabel').textContent = 'Escolher foto da capa'; openSheet('sheetTrip'); };
 $('tCover').addEventListener('change', () => { state.coverFile = $('tCover').files[0] || null; $('coverPickLabel').textContent = state.coverFile ? state.coverFile.name : 'Escolher foto da capa'; });
-$('formTrip').onsubmit = async ev => { ev.preventDefault(); const t = state.data.trip; t.title = $('tTitle').value.trim() || 'Roadtrip'; t.sub = $('tSub').value.trim(); t.who = $('tWho').value.trim(); if (state.coverFile) { try { const b = await shrinkImage(state.coverFile, 2200); const id = 'cover-' + uid(); await putMedia(id, b); if (t.coverId) { try { await store.del('media', t.coverId); } catch (e) {} } t.coverId = id; } catch (e) { toast('Não consegui usar essa foto na capa'); } } save(); closeSheet('sheetTrip'); renderAll(); toast('Capa salva'); };
+$('formTrip').onsubmit = async ev => { ev.preventDefault(); const t = state.data.trip; t.title = $('tTitle').value.trim() || 'Roadtrip'; t.sub = $('tSub').value.trim(); t.who = $('tWho').value.trim(); if (state.coverFile) { try { const b = await shrinkImage(state.coverFile, 2200); const id = 'cover-' + uid(); await putMedia(id, b); if (t.coverId && t.coverId.startsWith('cover-')) { try { await store.del('media', t.coverId); } catch (e) {} } t.coverId = id; } catch (e) { toast('Não consegui usar essa foto na capa'); } } save(); closeSheet('sheetTrip'); renderAll(); toast('Capa salva'); };
 
 /* ---------- arquivos: fotos, vídeos, ingressos ---------- */
 function shrinkImage(file, max) { return new Promise((resolve, reject) => { const url = URL.createObjectURL(file); const img = new Image(); img.onload = () => { URL.revokeObjectURL(url); let { width: w, height: h } = img; const sc = Math.min(1, (max || 1800) / Math.max(w, h)); w = Math.round(w * sc); h = Math.round(h * sc); const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(img, 0, 0, w, h); c.toBlob(b => b ? resolve(b) : reject(new Error('canvas')), 'image/jpeg', 0.86); }; img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('decode')); }; img.src = url; }); }
@@ -1078,7 +1460,7 @@ function docListHtml(keep, pending, kk, pk) { return keep.map((d, i) => `<span c
 async function openDoc(id, name) {
   const u = await mediaUrl(id); if (!u) { toast('Arquivo não encontrado neste aparelho'); return; }
   const b = await store.get('media', id);
-  if (b && b.type && b.type.startsWith('image/')) { $('lbImg').src = u; $('lbCap').textContent = name || ''; $('lightbox').hidden = false; return; }
+  if (b && b.type && b.type.startsWith('image/')) { $('lbActs').hidden = true; $('lbImg').src = u; $('lbCap').textContent = name || ''; $('lightbox').hidden = false; return; }
   const w = window.open(u, '_blank'); if (!w) { const a = document.createElement('a'); a.href = u; a.download = name || 'ingresso.pdf'; a.click(); }
 }
 
@@ -1235,7 +1617,7 @@ $('btnDelExpense').onclick = () => { const b = $('btnDelExpense'); if (b.dataset
 document.addEventListener('click', async ev => {
   const t = ev.target;
   const od = t.closest('[data-opendoc]'); if (od) { openDoc(od.dataset.opendoc, od.dataset.docname); return; }
-  const lb = t.closest('[data-lb]'); if (lb) { $('lbImg').src = await mediaUrl(lb.dataset.mid); $('lbCap').textContent = lb.dataset.cap || ''; $('lightbox').hidden = false; return; }
+  const lb = t.closest('[data-lb]'); if (lb) { $('lbImg').src = await mediaUrl(lb.dataset.mid); $('lbCap').textContent = lb.dataset.cap || ''; lbActs(lb.dataset.mid); $('lightbox').hidden = false; return; }
   const ft = t.closest('[data-fintab]'); if (ft) { state.finTab = state.finTab === ft.dataset.fintab && ft.classList.contains('cat') ? 'todos' : ft.dataset.fintab; renderFin(); return; }
   const dp = t.closest('[data-dayphotos]'); if (dp) { openDay(dp.dataset.dayphotos, true); return; }
   const ap = t.closest('[data-addphoto]'); if (ap) { openEdit(ap.dataset.addphoto, 'files'); return; }
@@ -1388,10 +1770,10 @@ const cloud = {
   enqueue(label, fn) { this.setStatus('busy', 'Enviando: ' + label); this.q = this.q.then(fn).then(() => this.setStatus('ok', 'Sincronizado ' + fmtWhen(Date.now()))).catch(e => { console.error(e); this.setStatus('err', 'Erro ao enviar ' + label + ': ' + (e.message || e)); }); return this.q; },
   canWrite() { return this.on && !!this.token; },
   scheduleData() { if (!this.canWrite()) return; clearTimeout(this.timer); this.timer = setTimeout(() => this.pushData(), 2500); },
-  pushData() { if (!this.canWrite()) return; clearTimeout(this.timer); const json = JSON.stringify(state.data); return this.enqueue('dados', () => this.put('dados/data.json', b64utf8(json), 'roadtrip: dados ' + fmtWhen(Date.now()))); },
-  async uploadMedia(id, blob) { if (!this.canWrite()) return; const ext = extOf(blob.type); (state.data.mext = state.data.mext || {})[id] = ext; const b64 = await blobToB64(blob); return this.enqueue('arquivo', () => this.put(`dados/media/${id}.${ext}`, b64, 'roadtrip: mídia ' + id)); },
-  deleteMedia(id) { if (!this.canWrite()) return; const ext = (state.data.mext || {})[id]; if (!ext) return; return this.enqueue('exclusão', () => this.remove(`dados/media/${id}.${ext}`)); },
-  mediaUrl(id) { const ext = (state.data && state.data.mext || {})[id]; if (!ext || !this.base) return ''; return `${this.base}dados/media/${id}.${ext}`; },
+  pushData() { if (!this.canWrite()) return; clearTimeout(this.timer); const json = JSON.stringify(LIB); return this.enqueue('dados', () => this.put('dados/data.json', b64utf8(json), 'roadtrip: dados ' + fmtWhen(Date.now()))); },
+  async uploadMedia(id, blob) { if (!this.canWrite()) return; const ext = extOf(blob.type); mx()[id] = ext; const b64 = await blobToB64(blob); return this.enqueue('arquivo', () => this.put(`dados/media/${id}.${ext}`, b64, 'roadtrip: mídia ' + id)); },
+  deleteMedia(id) { if (!this.canWrite()) return; const ext = extFor(id); if (!ext) return; return this.enqueue('exclusão', () => this.remove(`dados/media/${id}.${ext}`)); },
+  mediaUrl(id) { const ext = extFor(id); if (!ext || !this.base) return ''; return `${this.base}dados/media/${id}.${ext}`; },
   async pullData() {
     if (!this.on) return null;
     try {
@@ -1402,13 +1784,13 @@ const cloud = {
   },
   async pushAll(setMsg) {
     if (!this.canWrite()) return; const keys = await store.keys('media'); let n = 0;
-    for (const k of keys) { const b = await store.get('media', k); if (!b) continue; const ext = extOf(b.type); (state.data.mext = state.data.mext || {})[k] = ext; const path = `dados/media/${k}.${ext}`; setMsg(`Enviando ${++n} de ${keys.length}...`); try { if (!(await this.getSha(path))) await this.put(path, await blobToB64(b), 'roadtrip: mídia ' + k); } catch (e) { setMsg('Falhou em ' + k + ': ' + e.message); } }
+    for (const k of keys) { const b = await store.get('media', k); if (!b) continue; const ext = extOf(b.type); mx()[k] = ext; const path = `dados/media/${k}.${ext}`; setMsg(`Enviando ${++n} de ${keys.length}...`); try { if (!(await this.getSha(path))) await this.put(path, await blobToB64(b), 'roadtrip: mídia ' + k); } catch (e) { setMsg('Falhou em ' + k + ': ' + e.message); } }
     await this.pushData(); setMsg('Tudo enviado. ' + keys.length + ' arquivos.');
   },
 };
 const extOf = t => ({ 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/gif': 'gif', 'video/mp4': 'mp4', 'video/webm': 'webm', 'application/pdf': 'pdf' })[t] || 'bin';
 const b64utf8 = s => { const bytes = new TextEncoder().encode(s); let bin = ''; for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(bin); };
-async function putMedia(id, blob) { await store.put('media', id, blob); (state.data.mext = state.data.mext || {})[id] = extOf(blob.type); cloud.uploadMedia(id, blob); }
+async function putMedia(id, blob) { await store.put('media', id, blob); mx()[id] = extOf(blob.type); cloud.uploadMedia(id, blob); }
 function setReadOnly(ro) { state.ro = ro; document.body.classList.toggle('ro', ro); const b = $('roNote'); if (b) b.hidden = !ro; }
 
 /* painel Nuvem */
@@ -1424,8 +1806,9 @@ $('btnCloudSave').onclick = async () => {
   m('Testando a chave...'); try { const r = await cloud.api('', { cache: 'no-store' }); if (r.status === 401 || r.status === 403) { m('Chave inválida ou sem permissão em Contents (leitura e escrita).'); return; } if (!r.ok && r.status !== 404) { m('GitHub respondeu ' + r.status); return; } } catch (e) { m('Sem conexão com o GitHub.'); return; }
   setReadOnly(false); m('Conectado. Enviando seus dados e fotos deste aparelho...'); await cloud.pushAll(m); renderAll();
 };
+/* fim nuvem */
 $('btnCloudPushAll').onclick = async () => { if (!cloud.canWrite()) { $('cloudMsg').textContent = 'Conecte a chave primeiro.'; return; } await cloud.pushAll(s => { $('cloudMsg').textContent = s; }); };
-$('btnCloudPull').onclick = async () => { const m = s => { $('cloudMsg').textContent = s; }; m('Buscando...'); const remote = await cloud.pullData(); if (!remote) { m('Nada na nuvem ainda.'); return; } state.data = remote; state.data.expenses = state.data.expenses || []; state.data.trash = state.data.trash || []; await flushSave(); await renderAll(); m('Dados da nuvem carregados.'); };
+$('btnCloudPull').onclick = async () => { const m = s => { $('cloudMsg').textContent = s; }; m('Buscando...'); const remote = await cloud.pullData(); if (!remote) { m('Nada na nuvem ainda.'); return; } LIB = toLib(remote); normLib(); state.data = LIB.trips[0] || makeTrip({}); state.data.theme = LIB.theme; await flushSave(); if (!$('tripApp').hidden) await renderAll(); else showShell(shell.view); m('Dados da nuvem carregados.'); };
 
 /* ---------- compartilhar ---------- */
 function openShare() {
@@ -1530,7 +1913,7 @@ document.addEventListener('submit', ev => { const f = ev.target.closest('[data-c
 /* ---------- backup ---------- */
 const blobToB64 = b => new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result.split(',')[1]); fr.readAsDataURL(b); });
 $('btnBackup').onclick = async () => { toast('Montando backup...'); const media = {}; for (const k of await store.keys('media')) { const b = await store.get('media', k); if (b) media[k] = { type: b.type, b64: await blobToB64(b) }; } const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify({ data: state.data, media })], { type: 'application/json' })); a.download = `${(state.data.trip.title || 'Roadtrip').replace(/[^\w\- ]+/g, '')} - backup.json`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 5000); };
-$('fileRestore').addEventListener('change', async () => { const f = $('fileRestore').files[0]; if (!f) return; try { const j = JSON.parse(await f.text()); if (!j.data || !j.data.days) throw new Error('x'); for (const [k, v] of Object.entries(j.media || {})) { const bin = atob(v.b64); const arr = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i); await store.put('media', k, new Blob([arr], { type: v.type })); } state.data = j.data; state.data.expenses = state.data.expenses || []; state.data.trash = state.data.trash || []; save(); Object.values(state.urls).forEach(URL.revokeObjectURL); state.urls = {}; await renderAll(); toast('Backup restaurado'); } catch (e) { toast('Esse arquivo não é um backup válido'); } $('fileRestore').value = ''; });
+$('fileRestore').addEventListener('change', async () => { const f = $('fileRestore').files[0]; if (!f) return; try { const j = JSON.parse(await f.text()); if (!j.data || !j.data.days) throw new Error('x'); for (const [k, v] of Object.entries(j.media || {})) { const bin = atob(v.b64); const arr = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i); await store.put('media', k, new Blob([arr], { type: v.type })); } const ix = LIB.trips.indexOf(state.data); const oldId = state.data.id; state.data = j.data; state.data.id = oldId || 't' + uid(); if (ix >= 0) LIB.trips[ix] = state.data; else LIB.trips.push(state.data); Object.assign(LIB.mext, j.data.mext || {}); state.data.expenses = state.data.expenses || []; state.data.trash = state.data.trash || []; save(); Object.values(state.urls).forEach(URL.revokeObjectURL); state.urls = {}; await renderAll(); toast('Backup restaurado'); } catch (e) { toast('Esse arquivo não é um backup válido'); } $('fileRestore').value = ''; });
 
 /* ---------- PDF: helpers ---------- */
 async function loadImg(id) { const u = await mediaUrl(id); if (!u) return null; return new Promise(res => { const im = new Image(); if (/^https?:/.test(u)) im.crossOrigin = 'anonymous'; im.onload = () => res(im); im.onerror = () => res(null); im.src = u; }); }
@@ -1729,26 +2112,628 @@ $('btnMakePdf').onclick = async () => {
   btn.disabled = false;
 };
 
-/* ---------- início ---------- */
+/* ======================= CASCA: Nosso ano · Viagens · Álbuns  ======================= */
+const WITH_DEMOS = typeof TEST_BUILD !== 'undefined';
+const MONL = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+const ds2 = dt => `${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())}`;
+const nowHM = () => { const t = new Date(); return `${pad(t.getHours())}:${pad(t.getMinutes())}`; };
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const isImg = m => m && m.kind === 'image';
+const plural = (n, a, b) => `${n} ${n === 1 ? a : b}`;
+const shell = { view: 'ano', sel: new Set(), selMode: false };
+
+function makeTrip(o) {
+  const ds = [];
+  if (o.from && o.to) { let d = toDate(o.from); const end = toDate(o.to); let n = 0; while (d <= end && n < 60) { ds.push({ id: 'd' + uid(), date: ds2(d), title: '', note: '', km: 0, drive: '', via: '', routeId: '', media: [], items: [], links: [] }); d = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1); n++; } }
+  return { id: 't' + uid(), v: 7, theme: LIB ? LIB.theme : 'offwhite', collage: 'diagonal', album: 'editorial', expenses: [], trash: [], mext: {}, trip: { title: o.title || 'Nova viagem', sub: o.sub || '', who: o.who || '', coverId: '', fuelPrice: 4.10, kmPerL: 8.5, here: null }, days: ds };
+}
+
+/* fotos de exemplo desenhadas na hora (não dependem da internet) */
+async function demoBlob(i, label) {
+  try { await document.fonts.ready; } catch (e) {}
+  const c = document.createElement('canvas'); c.width = 1200; c.height = 900; const g = c.getContext('2d');
+  const cols = [['#264F59', '#C8D85A'], ['#A85F49', '#F2EEE6'], ['#657044', '#F2EEE6'], ['#713D3D', '#A87554'], ['#456A8A', '#F2EEE6'], ['#594036', '#C8D85A']][i % 6];
+  g.fillStyle = cols[0]; g.fillRect(0, 0, 1200, 900); g.globalAlpha = 0.16; g.fillStyle = cols[1];
+  for (let k = 0; k < 5; k++) { g.beginPath(); g.arc(160 + k * 240, 280 + (k % 2) * 300, 150 + k * 22, 0, 7); g.fill(); }
+  g.globalAlpha = 1; g.fillStyle = cols[1]; g.textAlign = 'center'; g.font = '700 30px Manrope, Arial, sans-serif'; g.fillText('E X E M P L O', 600, 330);
+  g.font = 'italic 300 120px Fraunces, Georgia, serif'; g.fillText(label, 600, 500);
+  return new Promise(r => c.toBlob(r, 'image/jpeg', 0.85));
+}
+async function seedLib() {
+  const rt = seed(); rt.id = 'roadtrip';
+  for (const [n, b64] of Object.entries(ROUTE_SEED)) { const bin = atob(b64); const arr = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i); try { await store.put('media', 'route-' + n, new Blob([arr], { type: 'image/jpeg' })); } catch (e) {} }
+  const L = { v: 1, theme: 'offwhite', year: 2026, moments: [], inbox: [], trips: [rt], albums: [], trash: [], updatedAt: 0 };
+  const demos = [
+    ['2026-06-12', '20:30', 'Dia dos Namorados', 'Exemplo. Troque pela foto de vocês e escreva o que fizeram.', null, 'Jantar a dois', false],
+    ['2026-08-23', '16:00', 'Domingo no parque', 'Exemplo de momento com lugar: toque no endereço para abrir no Maps.', 'Parque Vaca Brava, Goiânia - GO', 'Parque', false],
+    ['2026-09-20', '09:12', 'Starbucks', 'Exemplo de "Marcar presença": a foto, a hora e o nome do lugar puxado pela localização.', 'Starbucks, Goiânia - GO', 'Café', true],
+  ];
+  if (!WITH_DEMOS) return L;
+  let i = 0;
+  for (const [date, time, title, text, place, lab, pres] of demos) { const id = 'demo-' + (++i); try { await store.put('media', id, await demoBlob(i, lab)); } catch (e) {} L.moments.push({ id: 'mo' + uid(), date, time, title, text, place: place ? { label: place, lat: null, lng: null, url: '' } : null, media: [{ id, kind: 'image', cap: '', example: true }], presence: pres, example: true, createdAt: Date.now() + i }); }
+  for (const lab of ['Sem data', 'Arraste-me']) { const id = 'demo-' + (++i); try { await store.put('media', id, await demoBlob(i, lab)); } catch (e) {} L.inbox.push({ id, kind: 'image', cap: '', example: true, addedAt: Date.now() }); }
+  return L;
+}
+function normLib() {
+  LIB.moments = LIB.moments || []; LIB.inbox = LIB.inbox || []; LIB.trips = LIB.trips || []; LIB.albums = LIB.albums || []; LIB.trash = LIB.trash || []; LIB.theme = LIB.theme || 'offwhite'; LIB.mext = LIB.mext || {}; LIB.year = LIB.year || new Date().getFullYear();
+  for (const t of LIB.trips) { Object.assign(LIB.mext, t.mext || {}); t.id = t.id || 't' + uid(); t.expenses = t.expenses || []; t.trash = t.trash || []; t.mext = t.mext || {}; for (const d of t.days) { d.media = d.media || []; d.links = d.links || []; d.items = d.items || []; } }
+}
+
+/* ---------- navegação da casca ---------- */
+function showShell(v) {
+  shell.view = v; document.body.classList.remove('in-trip'); $('tripApp').hidden = true;
+  for (const [k, id] of [['ano', 'shellAno'], ['viagens', 'shellViagens'], ['albuns', 'shellAlbuns']]) $(id).hidden = k !== v;
+  document.querySelectorAll('[data-sv]').forEach(b => b.classList.toggle('on', b.dataset.sv === v));
+  if (v !== 'ano') exitSelect();
+  if (v === 'ano') renderYear(); if (v === 'viagens') renderTrips(); if (v === 'albuns') renderAlbums();
+  window.scrollTo({ top: 0 });
+}
+$('stabs').addEventListener('click', ev => { const b = ev.target.closest('[data-sv]'); if (b) showShell(b.dataset.sv); });
+async function openTrip(id, dayId) {
+  const t = LIB.trips.find(x => x.id === id); if (!t) return;
+  state.data = t; t.theme = LIB.theme; exitSelect();
+  ['shellAno', 'shellViagens', 'shellAlbuns'].forEach(x => { $(x).hidden = true; });
+  $('tripApp').hidden = false; document.body.classList.add('in-trip');
+  document.querySelectorAll('[data-sv]').forEach(b => b.classList.toggle('on', b.dataset.sv === 'viagens'));
+  await setView('diario'); await renderAll();
+  const sec = dayId && document.getElementById(dayId); if (sec) sec.scrollIntoView(); else window.scrollTo({ top: 0 });
+}
+$('btnTripBack').onclick = () => showShell('viagens');
+$('btnColors').onclick = () => { renderStyles(); const inTrip = !$('tripApp').hidden; $('collageStyles').closest('.field').hidden = !inTrip; $('albumStyles').closest('.field').hidden = !inTrip; openSheet('sheetStyle'); };
+$('btnStyle').onclick = () => { renderStyles(); $('collageStyles').closest('.field').hidden = false; $('albumStyles').closest('.field').hidden = false; openSheet('sheetStyle'); };
+$('btnCloseStyle').addEventListener('click', () => { if (shell.view === 'albuns' && $('tripApp').hidden) renderAlbums(); });
+
+/* ---------- referências de fotos ---------- */
+/* chaves: m|momento|foto · i|foto (sem data) · t|viagem|dia|foto (fotos do dia da viagem) */
+function phRef(key) {
+  const p = key.split('|');
+  if (p[0] === 'm') { const mo = LIB.moments.find(x => x.id === p[1]); if (!mo) return null; const i = mo.media.findIndex(x => x.id === p[2]); return i < 0 ? null : { list: mo.media, i, m: mo.media[i], mo, date: mo.date }; }
+  if (p[0] === 'i') { const i = LIB.inbox.findIndex(x => x.id === p[1]); return i < 0 ? null : { list: LIB.inbox, i, m: LIB.inbox[i], date: '', inbox: true }; }
+  if (p[0] === 't') { const t = LIB.trips.find(x => x.id === p[1]); const d = t && t.days.find(x => x.id === p[2]); if (!d) return null; const i = (d.media || []).findIndex(x => x.id === p[3]); return i < 0 ? null : { list: d.media, i, m: d.media[i], t, d, date: d.date }; }
+  return null;
+}
+function takePhoto(ref) {
+  ref.list.splice(ref.i, 1); const m = { ...ref.m }; delete m.addedAt;
+  if (ref.mo && !ref.mo.media.length && ref.mo.auto && !ref.mo.text) LIB.moments = LIB.moments.filter(x => x !== ref.mo);
+  return m;
+}
+function placePhoto(m, tg, ref) {
+  if (tg.type === 'inbox') { LIB.inbox.push({ ...m, addedAt: Date.now() }); return '"Sem data"'; }
+  if (tg.type === 'mom') { const mo = LIB.moments.find(x => x.id === tg.id); if (mo) { mo.media.push(m); return mo.title ? `"${mo.title}"` : fmtShort(toDate(mo.date)); } }
+  if (tg.type === 'tday') { const t = LIB.trips.find(x => x.id === tg.tripId), d = t && t.days.find(x => x.id === tg.dayId); if (d) { d.media.push(m); return `${t.trip.title}, ${fmtShort(toDate(d.date))}`; } }
+  const date = tg.date;
+  if (ref && ref.t) { const d = ref.t.days.find(x => x.date === date); if (d) { d.media.push(m); return `${ref.t.trip.title}, ${fmtShort(toDate(date))}`; } }
+  const ms = LIB.moments.filter(x => x.date === date); let mo = ms.find(x => x.auto) || (ms.length === 1 ? ms[0] : null);
+  if (!mo) { mo = { id: 'mo' + uid(), date, time: m.time || '', title: '', text: '', place: null, media: [], auto: true, createdAt: Date.now() }; LIB.moments.push(mo); }
+  mo.media.push(m); return fmtShort(toDate(date));
+}
+function sameSpot(ref, tg) {
+  if (tg.type === 'inbox') return !!ref.inbox;
+  if (tg.type === 'mom') return !!ref.mo && ref.mo.id === tg.id;
+  if (tg.type === 'tday') return !!ref.d && ref.d.id === tg.dayId;
+  return tg.type === 'date' && ref.date === tg.date && !ref.inbox;
+}
+function moveKeys(keys, tg, quiet) {
+  let n = 0, where = '';
+  for (const key of keys) { const ref = phRef(key); if (!ref || sameSpot(ref, tg)) continue; const m = takePhoto(ref); where = placePhoto(m, tg, ref); n++; }
+  if (!n) return 0;
+  if (tg.date && +tg.date.slice(0, 4) !== LIB.year) LIB.year = +tg.date.slice(0, 4);
+  save(); renderYear(); if (!quiet) toast(`${plural(n, 'foto movida', 'fotos movidas')} para ${where}`); return n;
+}
+function delKeys(keys) {
+  let n = 0;
+  for (const key of keys) { const ref = phRef(key); if (!ref) continue; const from = ref.inbox ? 'Sem data' : ref.mo ? (ref.mo.title || fmtShort(toDate(ref.mo.date))) : `${ref.t.trip.title}, ${fmtShort(toDate(ref.d.date))}`; const m = takePhoto(ref); LIB.trash.unshift({ id: 'x' + uid(), kind: 'photo', m, from, at: Date.now() }); n++; }
+  if (n) { save(); renderYear(); toast(`${plural(n, 'foto foi', 'fotos foram')} para a lixeira`); }
+}
+
+/* ---------- NOSSO ANO ---------- */
+const phHtml = (key, m, small) => `<button type="button" class="yph${shell.sel.has(key) ? ' sel' : ''}${small ? ' sm' : ''}" data-ph="${esc(key)}" title="${esc(m.cap || '')}"><img data-mid="${esc(m.id)}" alt="">${m.example ? '<span class="ex">Exemplo</span>' : ''}</button>`;
+function yearData(y) {
+  const by = new Map(); const get = d => { if (!by.has(d)) by.set(d, { moms: [], tdays: [] }); return by.get(d); };
+  for (const m of LIB.moments) if (m.date && m.date.startsWith(y + '-')) get(m.date).moms.push(m);
+  for (const t of LIB.trips) for (const d of t.days) if (d.date && d.date.startsWith(y + '-')) get(d.date).tdays.push({ t, d });
+  return by;
+}
+function yearsAvail() { const s = new Set([new Date().getFullYear(), LIB.year]); LIB.moments.forEach(m => m.date && s.add(+m.date.slice(0, 4))); LIB.trips.forEach(t => t.days.forEach(d => d.date && s.add(+d.date.slice(0, 4)))); return [...s].sort(); }
+function tripBlock(t, d) {
+  const di = t.days.indexOf(d) + 1, own = (d.media || []).filter(isImg), itemPh = d.items.flatMap(e => (e.media || []).filter(isImg));
+  return `<div class="ytrip" data-drop="tday|${t.id}|${d.id}"><div class="tt"><small>Viagem · ${esc(t.trip.title)} · dia ${pad(di)}</small><b>${esc(d.title || 'Dia ' + di)}</b><span class="tsub">${plural(d.items.length, 'programação', 'programações')}${itemPh.length ? ' · ' + plural(itemPh.length, 'foto', 'fotos') + ' nelas' : ''}</span></div>
+    <div class="th">${own.map(m => phHtml(`t|${t.id}|${d.id}|${m.id}`, m, true)).join('')}${itemPh.slice(0, 3).map(m => `<img data-mid="${esc(m.id)}" alt="">`).join('')}</div>
+    <button type="button" data-opentrip="${t.id}" data-day="${d.id}">Abrir viagem</button></div>`;
+}
+function momCard(mo) {
+  const imgs = mo.media.filter(isImg);
+  return `<article class="ymom${mo.presence ? ' presence' : ''}" data-drop="mom|${mo.id}">
+    <div class="top"><b>${esc(mo.title || 'Fotos do dia')}</b>${mo.time ? `<span class="t">${esc(mo.time)}</span>` : ''}${mo.presence ? '<span class="tag">Presença</span>' : ''}${mo.example ? '<span class="tag">Exemplo</span>' : ''}</div>
+    ${mo.place && mo.place.label ? `<a class="yplace" href="${esc(mapsUrl(mo.place))}" target="_blank" rel="noopener">${ICON_PIN}${esc(mo.place.label)}</a>` : ''}
+    ${imgs.length ? `<div class="ph">${imgs.map(m => phHtml(`m|${mo.id}|${m.id}`, m)).join('')}</div>` : ''}
+    ${mo.text ? `<p class="txt">${esc(mo.text)}</p>` : ''}
+    <div class="ft">${mo.place && mo.place.label ? `<a class="pill" href="${esc(wazeUrl(mo.place))}" target="_blank" rel="noopener">Waze</a>` : ''}<button type="button" class="pill ed" data-editmom="${mo.id}">Editar</button><button type="button" class="pill ed" data-delmom="${mo.id}">Excluir</button></div></article>`;
+}
+function renderYear() {
+  const y = LIB.year; $('ySelect').innerHTML = yearsAvail().map(v => `<option value="${v}" ${v === y ? 'selected' : ''}>${v}</option>`).join('');
+  const by = yearData(y), dates = [...by.keys()].sort();
+  let nPh = 0, nMom = 0, km = 0; const places = new Set(), trips = new Set();
+  for (const dt of dates) { const g = by.get(dt); nMom += g.moms.length; for (const mo of g.moms) { nPh += mo.media.filter(isImg).length; if (mo.place && mo.place.label) places.add(mo.place.label.toLowerCase()); } for (const { t, d } of g.tdays) { trips.add(t.id); nPh += dayPhotos(d).length; km += +d.km || 0; d.items.forEach(e => { if (e.loc && e.loc.label) places.add(e.loc.label.toLowerCase()); }); } }
+  $('yStats').innerHTML = [[nMom, nMom === 1 ? 'momento' : 'momentos'], [nPh, 'fotos'], [places.size, 'lugares'], [trips.size, trips.size === 1 ? 'viagem' : 'viagens'], [Math.round(km).toLocaleString('pt-BR'), 'km de estrada']].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('');
+  $('yTrayN').textContent = LIB.inbox.length ? '· ' + LIB.inbox.length : '';
+  $('yTrayRow').innerHTML = LIB.inbox.length ? LIB.inbox.map(m => phHtml('i|' + m.id, m)).join('') : '<span class="yempty">Nenhuma foto sem data. Fotos sem data de captura caem aqui ao adicionar.</span>';
+  const months = {}; dates.forEach(dt => { (months[dt.slice(5, 7)] = months[dt.slice(5, 7)] || []).push(dt); });
+  let h = '';
+  for (const mm of Object.keys(months).sort()) {
+    const list = months[mm]; let c = 0; list.forEach(dt => { const g = by.get(dt); c += g.moms.reduce((s, mo) => s + mo.media.filter(isImg).length, 0) + g.tdays.reduce((s, x) => s + dayPhotos(x.d).length, 0); });
+    h += `<section class="ymonth"><div class="mh" data-drop="date|${y}-${mm}-01"><h3>${MONL[+mm - 1]}</h3><span>${plural(list.length, 'dia', 'dias')} · ${plural(c, 'foto', 'fotos')}</span></div>`;
+    for (const dt of list) {
+      const g = by.get(dt), D = toDate(dt);
+      h += `<div class="yday" data-drop="date|${dt}"><div class="dl">${pad(D.getDate())}<small>${WEEK[D.getDay()].slice(0, 3)}</small></div><div class="items">`;
+      for (const { t, d } of g.tdays) h += tripBlock(t, d);
+      for (const mo of g.moms.slice().sort((a, b) => (a.time || '99').localeCompare(b.time || '99') || a.createdAt - b.createdAt)) h += momCard(mo);
+      h += '</div></div>';
+    }
+    h += '</section>';
+  }
+  if (!dates.length) h = `<div class="yempty big">Nada em ${y} ainda. Use "+ Momento", "Adicionar fotos" ou "Marcar presença".</div>`;
+  const empty = [...Array(12).keys()].map(i => pad(i + 1)).filter(mm => !months[mm]);
+  if (empty.length) h += `<div class="emptymonths"><span>Meses vazios · toque para criar um momento ou solte uma foto</span>${empty.map(mm => `<button type="button" class="em" data-drop="date|${y}-${mm}-01" data-newmom="${y}-${mm}-01">${MON[+mm - 1]}</button>`).join('')}</div>`;
+  $('yTimeline').innerHTML = h; renderYTrash(); hydrate($('shellAno'));
+}
+function renderYTrash() {
+  const xs = LIB.trash.filter(x => x.kind === 'photo' || x.kind === 'moment');
+  $('yTrash').hidden = !xs.length;
+  $('yTrash').innerHTML = `<summary>Lixeira do ano (${xs.length})</summary><ul>${xs.map(x => `<li>${x.kind === 'photo' ? `<img data-mid="${esc(x.m.id)}" alt=""> Foto de ${esc(x.from)}` : `Momento "${esc(x.mo.title || 'Fotos do dia')}" (${fmtShort(toDate(x.mo.date))})`} · ${fmtWhen(x.at)} <button type="button" class="pill" data-restore="${x.id}">Restaurar</button><button type="button" class="pill" data-purge="${x.id}">Apagar de vez</button></li>`).join('')}</ul>`;
+}
+$('ySelect').onchange = () => { LIB.year = +$('ySelect').value; save(); renderYear(); };
+$('shellAno').addEventListener('click', ev => {
+  const o = ev.target.closest('[data-opentrip]'); if (o) { openTrip(o.dataset.opentrip, o.dataset.day); return; }
+  const e = ev.target.closest('[data-editmom]'); if (e) { openMoment(e.dataset.editmom); return; }
+  const dm = ev.target.closest('[data-delmom]'); if (dm) { const mo = LIB.moments.find(x => x.id === dm.dataset.delmom); if (mo && confirm(`Excluir o momento "${mo.title || 'Fotos do dia'}"? Ele vai para a lixeira do ano, com as fotos.`)) { LIB.moments = LIB.moments.filter(x => x !== mo); LIB.trash.unshift({ id: 'x' + uid(), kind: 'moment', mo, at: Date.now() }); save(); renderYear(); toast('Momento na lixeira'); } return; }
+  const nm = ev.target.closest('[data-newmom]'); if (nm && !state.ro) { openMoment(null, nm.dataset.newmom); return; }
+  const r = ev.target.closest('[data-restore]'); if (r) { const x = LIB.trash.find(z => z.id === r.dataset.restore); if (!x) return; LIB.trash = LIB.trash.filter(z => z !== x); if (x.kind === 'photo') LIB.inbox.push({ ...x.m, addedAt: Date.now() }); else LIB.moments.push(x.mo); save(); renderYear(); toast(x.kind === 'photo' ? 'Foto restaurada em "Sem data"' : 'Momento restaurado'); return; }
+  const pg = ev.target.closest('[data-purge]'); if (pg) { const x = LIB.trash.find(z => z.id === pg.dataset.purge); if (!x || !confirm('Apagar de vez? Não dá para desfazer.')) return; LIB.trash = LIB.trash.filter(z => z !== x); delMedia(x.kind === 'photo' ? [x.m] : x.mo.media); save(); renderYear(); }
+});
+
+/* ---------- arrastar fotos (mouse: arrasta direto · toque: segura meio segundo) ---------- */
+const pdrag = { armed: false, on: false };
+document.addEventListener('pointerdown', ev => {
+  const el = ev.target.closest('.yph[data-ph]'); if (!el || ev.button > 0 || $('shellAno').hidden) return;
+  if (state.ro) { pdrag.armed = false; return; }
+  clearTimeout(pdrag.timer); Object.assign(pdrag, { armed: true, on: false, moved: false, key: el.dataset.ph, el, sx: ev.clientX, sy: ev.clientY, x: ev.clientX, y: ev.clientY, type: ev.pointerType, pid: ev.pointerId });
+  if (ev.pointerType === 'mouse') ev.preventDefault();
+  else pdrag.timer = setTimeout(() => { if (pdrag.armed && !pdrag.moved && !pdrag.on) pStartDrag(pdrag.x, pdrag.y); }, 420);
+});
+document.addEventListener('pointermove', ev => {
+  if (!pdrag.armed || ev.pointerId !== pdrag.pid) return; pdrag.x = ev.clientX; pdrag.y = ev.clientY;
+  if (pdrag.on) { pMoveDrag(ev.clientX, ev.clientY); return; }
+  if (Math.hypot(ev.clientX - pdrag.sx, ev.clientY - pdrag.sy) > 8) { if (pdrag.type === 'mouse') pStartDrag(ev.clientX, ev.clientY); else { pdrag.moved = true; pdrag.armed = false; clearTimeout(pdrag.timer); } }
+});
+document.addEventListener('pointerup', ev => { if (!pdrag.armed || ev.pointerId !== pdrag.pid) return; if (pdrag.on && pdrag.type !== 'mouse') return; clearTimeout(pdrag.timer); pdrag.armed = false; if (pdrag.on) pEndDrag(ev.clientX, ev.clientY); else if (!pdrag.moved) tapPhoto(pdrag.key); });
+document.addEventListener('pointercancel', ev => { if (ev.pointerId !== pdrag.pid) return; clearTimeout(pdrag.timer); if (pdrag.on && pdrag.type !== 'mouse') return; pdrag.armed = false; if (pdrag.on) pCleanupDrag(); });
+/* no toque, depois que o arraste começa, os eventos de toque continuam mesmo se o navegador cancelar o ponteiro */
+document.addEventListener('touchmove', ev => { if (!pdrag.on) return; ev.preventDefault(); const t = ev.touches[0]; if (t) { pdrag.x = t.clientX; pdrag.y = t.clientY; pMoveDrag(t.clientX, t.clientY); } }, { passive: false });
+document.addEventListener('touchend', ev => { if (!pdrag.on) return; ev.preventDefault(); pdrag.armed = false; pEndDrag(pdrag.x, pdrag.y); }, { passive: false });
+document.addEventListener('touchcancel', () => { if (pdrag.on) { pdrag.armed = false; pCleanupDrag(); } });
+document.addEventListener('contextmenu', ev => { if (ev.target.closest && ev.target.closest('.yph')) ev.preventDefault(); });
+document.addEventListener('dragstart', ev => { if (ev.target.closest && ev.target.closest('.yph')) ev.preventDefault(); });
+function pStartDrag(x, y) {
+  pdrag.on = true; pdrag.keys = shell.sel.has(pdrag.key) ? [...shell.sel] : [pdrag.key];
+  const img = pdrag.el.querySelector('img'); const g = document.createElement('div'); g.className = 'dragghost';
+  g.innerHTML = `<img src="${img && img.src ? img.src : ''}" alt="">${pdrag.keys.length > 1 ? `<b>${pdrag.keys.length}</b>` : ''}`; document.body.appendChild(g); pdrag.ghost = g;
+  document.querySelectorAll('.yph[data-ph]').forEach(e => { if (pdrag.keys.includes(e.dataset.ph)) e.classList.add('dragging'); });
+  document.body.classList.add('dragmode'); try { navigator.vibrate && navigator.vibrate(12); } catch (e) {}
+  pMoveDrag(x, y); pdrag.scrollT = setInterval(autoScroll, 30);
+}
+function pMoveDrag(x, y) {
+  pdrag.ghost.style.left = x + 'px'; pdrag.ghost.style.top = y + 'px';
+  const el = document.elementFromPoint(x, y); const t = el && el.closest('[data-drop]');
+  if (t !== pdrag.over) { if (pdrag.over) pdrag.over.classList.remove('dropover'); pdrag.over = t; if (t) t.classList.add('dropover'); }
+}
+function autoScroll() { if (!pdrag.on) return; const top = $('shell').getBoundingClientRect().bottom, H = innerHeight; let dy = 0; if (pdrag.y < top + 70) dy = -Math.ceil((top + 70 - pdrag.y) / 4); else if (pdrag.y > H - 80) dy = Math.ceil((pdrag.y - (H - 80)) / 4); if (dy) { window.scrollBy(0, dy); pMoveDrag(pdrag.x, pdrag.y); } }
+function pCleanupDrag() { clearInterval(pdrag.scrollT); pdrag.on = false; if (pdrag.ghost) pdrag.ghost.remove(); pdrag.ghost = null; if (pdrag.over) pdrag.over.classList.remove('dropover'); pdrag.over = null; document.body.classList.remove('dragmode'); document.querySelectorAll('.yph.dragging').forEach(e => e.classList.remove('dragging')); }
+function pEndDrag(x, y) {
+  const t = pdrag.over, keys = pdrag.keys, far = Math.hypot(x - pdrag.sx, y - pdrag.sy) > 8; pCleanupDrag();
+  if (!far) { tapPhoto(pdrag.key); return; } if (!t) return;
+  const p = t.dataset.drop.split('|');
+  const tg = p[0] === 'inbox' ? { type: 'inbox' } : p[0] === 'mom' ? { type: 'mom', id: p[1] } : p[0] === 'tday' ? { type: 'tday', tripId: p[1], dayId: p[2] } : { type: 'date', date: p[1] };
+  if (tg.type === 'mom') { const mo = LIB.moments.find(z => z.id === tg.id); if (mo) tg.date = mo.date; }
+  if (moveKeys(keys, tg) && shell.selMode) exitSelect();
+}
+function tapPhoto(key) {
+  if (state.ro) { const r = phRef(key); if (r) mediaUrl(r.m.id).then(u => { $('lbImg').src = u; $('lbCap').textContent = r.m.cap || ''; $('lbActs').hidden = true; $('lightbox').hidden = false; }); return; }
+  if (shell.selMode) { if (shell.sel.has(key)) shell.sel.delete(key); else shell.sel.add(key); document.querySelectorAll('.yph[data-ph]').forEach(e => e.classList.toggle('sel', shell.sel.has(e.dataset.ph))); updSel(); return; }
+  openPhoto(key);
+}
+
+/* ---------- selecionar várias ---------- */
+function enterSelect() { shell.selMode = true; shell.sel.clear(); $('ySelectMode').classList.add('on'); $('ySelectMode').textContent = 'Selecionando'; $('selDate').value = ''; updSel(); $('selBar').hidden = false; toast('Toque nas fotos para selecionar'); }
+function exitSelect() { shell.selMode = false; shell.sel.clear(); $('selBar').hidden = true; $('ySelectMode').classList.remove('on'); $('ySelectMode').textContent = 'Selecionar'; document.querySelectorAll('.yph.sel').forEach(e => e.classList.remove('sel')); }
+function updSel() { $('selN').textContent = plural(shell.sel.size, 'foto selecionada', 'fotos selecionadas'); }
+$('ySelectMode').onclick = () => shell.selMode ? exitSelect() : enterSelect();
+$('selCancel').onclick = exitSelect;
+$('selMove').onclick = () => { if (!shell.sel.size) { toast('Selecione as fotos primeiro'); return; } if (!$('selDate').value) { toast('Escolha a nova data'); $('selDate').focus(); return; } moveKeys([...shell.sel], { type: 'date', date: $('selDate').value }); exitSelect(); };
+$('selInbox').onclick = () => { if (!shell.sel.size) return; moveKeys([...shell.sel], { type: 'inbox' }); exitSelect(); };
+$('selDel').onclick = () => { if (!shell.sel.size) return; if (!confirm(`Excluir ${plural(shell.sel.size, 'foto', 'fotos')}? Vão para a lixeira do ano.`)) return; delKeys([...shell.sel]); exitSelect(); };
+
+/* ---------- editar uma foto (data, hora, legenda) ---------- */
+async function openPhoto(key) {
+  const ref = phRef(key); if (!ref) return; state.phKey = key; const m = ref.m;
+  $('phPrev').src = await mediaUrl(m.id);
+  $('phFrom').textContent = ref.inbox ? 'Está em "Sem data".' : ref.t ? `Está na viagem ${ref.t.trip.title}, dia ${pad(ref.t.days.indexOf(ref.d) + 1)} (${fmtShort(toDate(ref.d.date))}).` : `Está no momento "${ref.mo.title || 'Fotos do dia'}".`;
+  $('phDate').value = ref.date || ''; $('phTime').value = m.time || (ref.mo && ref.mo.time) || ''; $('phCap').value = m.cap || '';
+  $('phInbox').hidden = !!ref.inbox; $('phFileDate').hidden = !m.fileDate; $('phFileDate').textContent = m.fileDate ? 'Data do arquivo ' + fmtShort(toDate(m.fileDate)) : '';
+  openSheet('sheetPhoto');
+}
+$('phToday').onclick = () => { $('phDate').value = todayStr(); };
+$('phFileDate').onclick = () => { const r = phRef(state.phKey); if (r && r.m.fileDate) $('phDate').value = r.m.fileDate; };
+$('phCancel').onclick = () => closeSheet('sheetPhoto');
+$('phInbox').onclick = () => { closeSheet('sheetPhoto'); moveKeys([state.phKey], { type: 'inbox' }); };
+$('phDelete').onclick = () => { if (!confirm('Excluir esta foto? Ela vai para a lixeira do ano.')) return; closeSheet('sheetPhoto'); delKeys([state.phKey]); };
+$('formPhoto').onsubmit = ev => {
+  ev.preventDefault(); const ref = phRef(state.phKey); if (!ref) { closeSheet('sheetPhoto'); return; }
+  ref.m.cap = $('phCap').value.trim(); ref.m.time = $('phTime').value; const nd = $('phDate').value; closeSheet('sheetPhoto');
+  if (nd !== (ref.date || '')) moveKeys([state.phKey], nd ? { type: 'date', date: nd } : { type: 'inbox' });
+  else { save(); renderYear(); toast('Foto atualizada'); }
+};
+
+/* ---------- momento (criar e editar) ---------- */
+const momEdit = { id: null, pending: [], keep: [], out: [] };
+function openMoment(id, date) {
+  const mo = id ? LIB.moments.find(x => x.id === id) : null;
+  momEdit.id = mo ? mo.id : null; momEdit.pending = []; momEdit.keep = mo ? mo.media.slice() : []; momEdit.out = [];
+  $('momTitle').textContent = mo ? 'Editar momento' : 'Novo momento';
+  $('moDate').value = mo ? mo.date : (date || todayStr()); $('moTime').value = mo ? mo.time || '' : ''; $('moName').value = mo ? mo.title || '' : '';
+  $('moPlace').value = mo && mo.place ? (mo.place.url || mo.place.label) : ''; $('moText').value = mo ? mo.text || '' : '';
+  $('moDelete').hidden = !mo; $('moFiles').value = ''; $('moPickLabel').textContent = 'Adicionar fotos'; renderMoPhotos(); openSheet('sheetMoment');
+}
+function renderMoPhotos() {
+  $('moPhotos').innerHTML = momEdit.keep.map((m, i) => `<span class="mothumb"><img data-mid="${esc(m.id)}" alt=""><button type="button" data-mokeep="${i}" title="Tirar do momento (vai para Sem data)">×</button></span>`).join('') + momEdit.pending.map((p, i) => `<span class="mothumb"><img src="${p.url}" alt=""><button type="button" data-mopend="${i}" title="Remover">×</button></span>`).join('');
+  hydrate($('moPhotos'));
+}
+$('moPhotos').addEventListener('click', ev => { const k = ev.target.closest('[data-mokeep]'), p = ev.target.closest('[data-mopend]'); if (k) { momEdit.out.push(...momEdit.keep.splice(+k.dataset.mokeep, 1)); renderMoPhotos(); } if (p) { const x = momEdit.pending.splice(+p.dataset.mopend, 1)[0]; URL.revokeObjectURL(x.url); renderMoPhotos(); } });
+$('moFiles').addEventListener('change', () => { for (const f of $('moFiles').files) momEdit.pending.push({ file: f, url: URL.createObjectURL(f) }); $('moFiles').value = ''; $('moPickLabel').textContent = 'Adicionar mais fotos'; renderMoPhotos(); });
+$('moCancel').onclick = () => closeSheet('sheetMoment');
+$('moDelete').onclick = () => { const mo = LIB.moments.find(x => x.id === momEdit.id); if (!mo || !confirm('Excluir este momento? Ele vai para a lixeira do ano.')) return; LIB.moments = LIB.moments.filter(x => x !== mo); LIB.trash.unshift({ id: 'x' + uid(), kind: 'moment', mo, at: Date.now() }); save(); closeSheet('sheetMoment'); renderYear(); };
+$('formMoment').onsubmit = async ev => {
+  ev.preventDefault(); const btn = ev.submitter || $('formMoment').querySelector('[type=submit]'); btn.disabled = true;
+  try {
+    const add = [];
+    for (let i = 0; i < momEdit.pending.length; i++) { toast(`Guardando foto ${i + 1} de ${momEdit.pending.length}...`); const p = momEdit.pending[i]; let ex = null; try { ex = await readExif(p.file); } catch (e) {} const b = await shrinkImage(p.file); const id = 'p' + uid(); await putMedia(id, b); add.push({ id, kind: 'image', cap: '', ...(ex && ex.time ? { time: ex.time } : {}) }); URL.revokeObjectURL(p.url); }
+    const place = parseLoc($('moPlace').value); const old = LIB.moments.find(x => x.id === momEdit.id);
+    const old_place = old && old.place; if (place && old_place && (old_place.url || old_place.label) === $('moPlace').value.trim()) Object.assign(place, old_place);
+    const data = { date: $('moDate').value, time: $('moTime').value, title: $('moName').value.trim(), text: $('moText').value.trim(), place, auto: false };
+    if (old) { Object.assign(old, data); old.media = momEdit.keep.concat(add); }
+    else LIB.moments.push({ id: 'mo' + uid(), ...data, media: add, createdAt: Date.now() });
+    for (const m of momEdit.out) LIB.inbox.push({ ...m, addedAt: Date.now() });
+    LIB.year = +data.date.slice(0, 4); save(); closeSheet('sheetMoment'); renderYear(); toast(old ? 'Momento salvo' : 'Momento criado');
+  } catch (e) { toast('Não consegui salvar: ' + (e.message || e)); }
+  btn.disabled = false;
+};
+$('yAddMoment').onclick = () => openMoment(null, LIB.year === new Date().getFullYear() ? todayStr() : `${LIB.year}-01-01`);
+
+/* ---------- adicionar fotos: organiza sozinho pela data e pelo GPS da foto ---------- */
+async function readExif(file) {
+  const buf = await file.slice(0, 256 * 1024).arrayBuffer(); const v = new DataView(buf);
+  if (v.byteLength < 4 || v.getUint16(0) !== 0xFFD8) return null;
+  let o = 2;
+  while (o + 10 < v.byteLength) {
+    const mk = v.getUint16(o); if ((mk & 0xFF00) !== 0xFF00) break; const len = v.getUint16(o + 2);
+    if (mk === 0xFFE1 && v.getUint32(o + 4) === 0x45786966) return parseTiff(v, o + 10);
+    if (mk === 0xFFDA) break; o += 2 + len;
+  }
+  return null;
+}
+function parseTiff(v, t) {
+  const le = v.getUint16(t) === 0x4949, u16 = p => v.getUint16(p, le), u32 = p => v.getUint32(p, le), N = v.byteLength;
+  const ifd = off => { const out = {}; const p = t + off; if (!off || p + 2 > N) return out; const n = u16(p); for (let i = 0; i < n; i++) { const e = p + 2 + i * 12; if (e + 12 > N) break; out[u16(e)] = { count: u32(e + 4), vo: e + 8 }; } return out; };
+  const str = en => { const p = en.count > 4 ? t + u32(en.vo) : en.vo; let s = ''; for (let i = 0; i < en.count - 1 && p + i < N; i++) s += String.fromCharCode(v.getUint8(p + i)); return s; };
+  const rats = en => { const p = t + u32(en.vo), a = []; for (let i = 0; i < en.count && p + i * 8 + 8 <= N; i++) a.push(u32(p + i * 8) / (u32(p + i * 8 + 4) || 1)); return a; };
+  const i0 = ifd(u32(t + 4)); let dt = '';
+  if (i0[0x8769]) { const ex = ifd(u32(i0[0x8769].vo)); if (ex[0x9003]) dt = str(ex[0x9003]); else if (ex[0x9004]) dt = str(ex[0x9004]); }
+  if (!dt && i0[0x0132]) dt = str(i0[0x0132]);
+  const r = {}; const m = dt.match(/^(\d{4}):(\d{2}):(\d{2})[ T](\d{2}):(\d{2})/); if (m && m[1] !== '0000') { r.date = `${m[1]}-${m[2]}-${m[3]}`; r.time = `${m[4]}:${m[5]}`; }
+  if (i0[0x8825]) { const g = ifd(u32(i0[0x8825].vo)); if (g[2] && g[4]) { const la = rats(g[2]), lo = rats(g[4]); if (la.length === 3 && lo.length === 3) { let lat = la[0] + la[1] / 60 + la[2] / 3600, lng = lo[0] + lo[1] / 60 + lo[2] / 3600; if (g[1] && String.fromCharCode(v.getUint8(g[1].vo)) === 'S') lat = -lat; if (g[3] && String.fromCharCode(v.getUint8(g[3].vo)) === 'W') lng = -lng; if (isFinite(lat) && isFinite(lng) && (lat || lng)) { r.lat = +lat.toFixed(6); r.lng = +lng.toFixed(6); } } } }
+  return r;
+}
+$('yAddPhotos').onclick = () => { $('yFiles').value = ''; $('yFiles').click(); };
+$('yFiles').addEventListener('change', async () => { const files = [...$('yFiles').files]; $('yFiles').value = ''; if (files.length) await importPhotos(files); });
+async function importPhotos(files) {
+  let nTrip = 0, nMom = 0, nIn = 0, fail = 0; const newMoms = [], years = {};
+  for (let i = 0; i < files.length; i++) {
+    const f = files[i]; toast(`Organizando foto ${i + 1} de ${files.length}...`);
+    let ex = null; try { ex = await readExif(f); } catch (e) {}
+    let blob; try { blob = await shrinkImage(f); } catch (e) { fail++; continue; }
+    const id = 'p' + uid(); await putMedia(id, blob); const m = { id, kind: 'image', cap: '' };
+    if (ex && ex.time) m.time = ex.time; if (ex && ex.lat != null) { m.lat = ex.lat; m.lng = ex.lng; }
+    if (!ex || !ex.date) { if (f.lastModified) m.fileDate = ds2(new Date(f.lastModified)); LIB.inbox.push({ ...m, addedAt: Date.now() }); nIn++; continue; }
+    years[ex.date.slice(0, 4)] = (years[ex.date.slice(0, 4)] || 0) + 1;
+    let hit = null; for (const t of LIB.trips) { const d = t.days.find(x => x.date === ex.date); if (d) { hit = { t, d }; break; } }
+    if (hit) { hit.d.media.push(m); nTrip++; continue; }
+    const ms = LIB.moments.filter(x => x.date === ex.date); let mo = ms.find(x => x.auto) || (ms.length === 1 ? ms[0] : null);
+    if (!mo) { mo = { id: 'mo' + uid(), date: ex.date, time: ex.time || '', title: '', text: '', place: null, media: [], auto: true, createdAt: Date.now() }; LIB.moments.push(mo); newMoms.push(mo); }
+    if (!mo.place && ex.lat != null && !mo._geo) mo._geo = { lat: ex.lat, lng: ex.lng };
+    mo.media.push(m); nMom++;
+  }
+  const ys = Object.keys(years); if (ys.length && !years[LIB.year]) LIB.year = +ys.sort((a, b) => years[b] - years[a])[0];
+  save(); renderYear();
+  const parts = []; if (nMom) parts.push(`${nMom} no ano`); if (nTrip) parts.push(`${nTrip} em viagens`); if (nIn) parts.push(`${nIn} em "Sem data"`); if (fail) parts.push(`${fail} não abriram (HEIC?)`);
+  toast(parts.length ? 'Fotos organizadas: ' + parts.join(', ') : 'Nenhuma foto adicionada');
+  const geo = LIB.moments.filter(x => x._geo);
+  for (const mo of geo.slice(0, 12)) { const g = mo._geo; delete mo._geo; try { const r = await reverseGeo(g.lat, g.lng); if (r && !mo.place) mo.place = { label: r.name || r.short, address: r.address, lat: g.lat, lng: g.lng, url: '' }; } catch (e) {} await sleep(1100); }
+  LIB.moments.forEach(x => { delete x._geo; }); if (geo.length) { save(); if (!$('shellAno').hidden) renderYear(); }
+}
+
+/* ---------- localização: nome dos lugares (OpenStreetMap) ---------- */
+function distM(a, b, c, d) { const R = 6371000, r = x => x * Math.PI / 180; const h = Math.sin(r(c - a) / 2) ** 2 + Math.cos(r(a)) * Math.cos(r(c)) * Math.sin(r(d - b) / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); }
+async function reverseGeo(lat, lng) {
+  const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&accept-language=pt-BR`); if (!r.ok) throw new Error('nominatim');
+  const j = await r.json(), a = j.address || {}; const street = [a.road, a.house_number].filter(Boolean).join(', '); const city = a.city || a.town || a.village || a.municipality || '';
+  const short = [street || a.suburb || a.neighbourhood, city].filter(Boolean).join(' · ');
+  return { name: j.name || '', short: short || j.display_name || '', address: j.display_name || '' };
+}
+const POI_PT = { cafe: 'Café', restaurant: 'Restaurante', fast_food: 'Lanchonete', bar: 'Bar', pub: 'Bar', ice_cream: 'Sorveteria', bakery: 'Padaria', supermarket: 'Supermercado', mall: 'Shopping', fuel: 'Posto', pharmacy: 'Farmácia', hotel: 'Hotel', motel: 'Motel', guest_house: 'Pousada', hostel: 'Hostel', museum: 'Museu', park: 'Parque', attraction: 'Atração', viewpoint: 'Mirante', cinema: 'Cinema', theatre: 'Teatro', place_of_worship: 'Templo', clothes: 'Roupas', convenience: 'Conveniência', bank: 'Banco', parking: 'Estacionamento', university: 'Universidade', hospital: 'Hospital', marketplace: 'Mercado', nightclub: 'Balada', stadium: 'Estádio', zoo: 'Zoológico', artwork: 'Arte', monument: 'Monumento', memorial: 'Memorial', gallery: 'Galeria', books: 'Livraria', hairdresser: 'Cabeleireiro', beauty: 'Beleza', fitness_centre: 'Academia', playground: 'Parquinho', garden: 'Jardim', sports_centre: 'Esportes', department_store: 'Loja', shoes: 'Calçados', chocolate: 'Chocolates', confectionery: 'Doceria', deli: 'Empório', florist: 'Floricultura', gift: 'Presentes', toys: 'Brinquedos', optician: 'Ótica', jewelry: 'Joalheria', amusement_arcade: 'Fliperama', water_park: 'Parque aquático', theme_park: 'Parque temático', information: 'Informações', castle: 'Castelo', ruins: 'Ruínas', food_court: 'Praça de alimentação', events_venue: 'Eventos', arts_centre: 'Centro cultural', library: 'Biblioteca', ice_rink: 'Patinação', bowling_alley: 'Boliche', escape_game: 'Escape room' };
+async function nearbyPlaces(lat, lng) {
+  const a = `(around:150,${lat},${lng})`;
+  const q = `[out:json][timeout:12];(nwr${a}[name][amenity];nwr${a}[name][shop];nwr${a}[name][tourism];nwr${a}[name][leisure];nwr${a}[name][historic];);out center 60;`;
+  const r = await fetch('https://overpass-api.de/api/interpreter', { method: 'POST', body: 'data=' + encodeURIComponent(q), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }); if (!r.ok) throw new Error('overpass');
+  const j = await r.json(), seen = new Set();
+  return (j.elements || []).map(e => { const la = e.lat ?? (e.center && e.center.lat), lo = e.lon ?? (e.center && e.center.lon), tg = e.tags || {}; const kind = tg.amenity || tg.shop || tg.tourism || tg.leisure || tg.historic || ''; return { name: tg.name, kind: POI_PT[kind] || '', addr: [tg['addr:street'], tg['addr:housenumber']].filter(Boolean).join(', '), lat: la, lng: lo, d: la != null ? distM(lat, lng, la, lo) : 9999 }; })
+    .filter(p => { const k = (p.name || '').toLowerCase(); if (!k || seen.has(k)) return false; seen.add(k); return true; }).sort((x, y) => x.d - y.d).slice(0, 8);
+}
+
+/* ---------- MARCAR PRESENÇA: câmera + localização + nome do lugar ---------- */
+const pres = { file: null, url: '', pos: null, places: [], addr: null, tok: 0, hit: null };
+function startPresenca() {
+  const tok = ++pres.tok; Object.assign(pres, { file: null, pos: null, places: [], addr: null, err: '' }); if (pres.url) URL.revokeObjectURL(pres.url); pres.url = '';
+  $('prPrev').hidden = true; $('prPrev').removeAttribute('src'); $('prPickLabel').textContent = 'Tirar foto'; $('prFile').value = ''; $('prPlaces').innerHTML = ''; $('prName').value = ''; $('prText').value = '';
+  $('prGeo').textContent = 'Buscando sua localização...';
+  const td = todayStr(); pres.hit = null; const order = $('tripApp').hidden ? LIB.trips : [state.data, ...LIB.trips.filter(t => t !== state.data)];
+  for (const t of order) { const d = t.days.find(x => x.date === td); if (d) { pres.hit = { t, d }; break; } }
+  $('prTripWrap').hidden = !pres.hit; if (pres.hit) { $('prTrip').checked = true; $('prTripLbl').textContent = `Adicionar também à viagem ${pres.hit.t.trip.title}, dia ${pad(pres.hit.t.days.indexOf(pres.hit.d) + 1)} (vira uma programação com a foto e o local)`; }
+  openSheet('sheetPresenca');
+  const geo = new Promise(res => {
+    if (!navigator.geolocation) { pres.err = 'Este navegador não informa a localização.'; res(null); return; }
+    navigator.geolocation.getCurrentPosition(p => res({ lat: p.coords.latitude, lng: p.coords.longitude, acc: p.coords.accuracy }), e => { pres.err = e.code === 1 ? 'Localização bloqueada: libere o acesso à localização para este site.' : 'Não consegui a localização agora.'; res(null); }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+  });
+  geo.then(pos => { if (tok === pres.tok) loadPlaces(pos, tok); });
+  $('presencaCam').value = ''; $('presencaCam').click();
+}
+function setPresFile(f) { if (pres.url) URL.revokeObjectURL(pres.url); pres.file = f; pres.url = URL.createObjectURL(f); $('prPrev').src = pres.url; $('prPrev').hidden = false; $('prPickLabel').textContent = 'Tirar outra foto'; }
+$('presencaCam').addEventListener('change', () => { const f = $('presencaCam').files[0]; if (f) setPresFile(f); });
+$('prFile').addEventListener('change', () => { const f = $('prFile').files[0]; if (f) setPresFile(f); });
+async function loadPlaces(pos, tok) {
+  pres.pos = pos;
+  if (!pos) { $('prGeo').textContent = pres.err + ' Escreva o nome do lugar abaixo.'; return; }
+  $('prGeo').textContent = `Localização encontrada (precisão de ${Math.round(pos.acc || 0)} m). Procurando os lugares por perto...`;
+  const [pl, ad] = await Promise.all([nearbyPlaces(pos.lat, pos.lng).catch(() => null), reverseGeo(pos.lat, pos.lng).catch(() => null)]);
+  if (tok !== pres.tok) return; pres.places = pl || []; pres.addr = ad;
+  const opts = pres.places.map((p, i) => ({ v: 'p' + i, b: p.name, s: [p.kind, p.addr].filter(Boolean).join(' · '), dist: p.d }));
+  if (ad) opts.push({ v: 'addr', b: ad.name || ad.short, s: ad.name ? ad.short : 'Endereço aproximado', dist: null });
+  $('prPlaces').innerHTML = opts.map((o, i) => `<label><input type="radio" name="prPlace" value="${o.v}" ${i === 0 ? 'checked' : ''}><span><b>${esc(o.b)}</b>${o.s ? `<small>${esc(o.s)}</small>` : ''}</span>${o.dist != null && o.dist < 9999 ? `<span class="dist">${Math.round(o.dist)} m</span>` : ''}</label>`).join('');
+  $('prGeo').textContent = !pl && !ad ? 'Sem conexão para buscar o nome do lugar. A localização fica salva; escreva o nome abaixo.' : pres.places.length ? 'Escolha onde vocês estão (o mais perto vem primeiro).' : 'Nenhum estabelecimento com nome aqui perto. Use o endereço ou escreva o nome.';
+}
+$('btnPresenca').onclick = startPresenca;
+$('prCancel').onclick = () => { pres.tok++; closeSheet('sheetPresenca'); };
+$('formPresenca').onsubmit = async ev => {
+  ev.preventDefault(); const btn = $('prSave'); btn.disabled = true;
+  try {
+    const sel = (document.querySelector('input[name=prPlace]:checked') || {}).value, custom = $('prName').value.trim(), pos = pres.pos;
+    let label = custom, address = pres.addr ? pres.addr.address : '', lat = pos ? pos.lat : null, lng = pos ? pos.lng : null;
+    if (!custom && sel && sel[0] === 'p') { const p = pres.places[+sel.slice(1)]; label = p.name; if (p.lat != null) { lat = p.lat; lng = p.lng; } if (p.addr) address = p.addr + (pres.addr ? ' · ' + pres.addr.short : ''); }
+    else if (!custom && sel === 'addr' && pres.addr) label = pres.addr.name || pres.addr.short;
+    if (!label) label = pos ? 'Aqui' : 'Presença';
+    const place = { label, address, lat: lat != null ? +(+lat).toFixed(6) : null, lng: lng != null ? +(+lng).toFixed(6) : null, url: '' };
+    const media = [];
+    if (pres.file) { const b = await shrinkImage(pres.file); const id = 'p' + uid(); await putMedia(id, b); media.push({ id, kind: 'image', cap: label, time: nowHM() }); }
+    const text = $('prText').value.trim();
+    if (pres.hit && $('prTrip').checked) {
+      const { t, d } = pres.hit; d.items.push({ id: 'i' + uid(), time: nowHM(), title: label, cat: '', status: '', valor: null, ig: '', link: '', loc: place, text, obs: '', videoUrl: '', media, docs: [], comments: [], createdAt: Date.now() }); t.trip.here = { dayId: d.id };
+    } else LIB.moments.push({ id: 'mo' + uid(), date: todayStr(), time: nowHM(), title: label, text, place, media, presence: true, createdAt: Date.now() });
+    save(); closeSheet('sheetPresenca'); toast('Presença marcada: ' + label);
+    if (!$('tripApp').hidden) await renderAll(); else { LIB.year = new Date().getFullYear(); showShell('ano'); }
+  } catch (e) { toast('Não consegui salvar: ' + (e.message || e)); }
+  btn.disabled = false;
+};
+
+/* ---------- VIAGENS ---------- */
+function tripRange(t) { const ds = t.days.filter(d => d.date); return { a: toDate(ds[0] && ds[0].date), b: toDate(ds[ds.length - 1] && ds[ds.length - 1].date) }; }
+function coverOf(t) { if (t.trip.coverId) return t.trip.coverId; for (const d of t.days) { const p = dayPhotos(d)[0]; if (p) return p.id; } return 'ex:' + COVER_EX; }
+function renderTrips() {
+  const ts = LIB.trips.slice().sort((x, y) => ((tripRange(y).a || 0) - (tripRange(x).a || 0)));
+  $('tCards').innerHTML = ts.map(t => {
+    const { a, b } = tripRange(t), nPh = t.days.reduce((s, d) => s + dayPhotos(d).length, 0), km = t.days.reduce((s, d) => s + (+d.km || 0), 0);
+    return `<div class="tcard" role="button" tabindex="0" data-opentrip="${t.id}"><img data-mid="${esc(coverOf(t))}" alt=""><div class="g"></div><button type="button" class="del ed" data-deltrip="${t.id}">Excluir</button>
+      <div class="in"><small>${a ? `${fmtShort(a)} a ${fmtShort(b)}.${b.getFullYear()}` : 'sem datas'}</small><b>${esc(t.trip.title)}</b><span>${plural(t.days.length, 'dia', 'dias')}${km ? ' · ' + Math.round(km).toLocaleString('pt-BR') + ' km' : ''} · ${plural(nPh, 'foto', 'fotos')}</span></div></div>`;
+  }).join('') + '<button type="button" class="tcard new ed" id="btnNewTrip"><span><b>+</b>Nova viagem</span></button>';
+  const xs = LIB.trash.filter(x => x.kind === 'trip');
+  $('tTrash').innerHTML = xs.length ? `<div class="eyebrow">Viagens excluídas</div><ul>${xs.map(x => `<li>${esc(x.t.trip.title)} · excluída ${fmtWhen(x.at)} <button type="button" class="pill" data-restoretrip="${x.id}">Restaurar</button></li>`).join('')}</ul>` : '';
+  hydrate($('shellViagens'));
+}
+$('shellViagens').addEventListener('click', ev => {
+  const d = ev.target.closest('[data-deltrip]'); if (d) { ev.stopPropagation(); const t = LIB.trips.find(x => x.id === d.dataset.deltrip); if (t && confirm(`Excluir a viagem "${t.trip.title}"? Ela fica em "Viagens excluídas" e dá para restaurar.`)) { LIB.trips = LIB.trips.filter(x => x !== t); LIB.trash.unshift({ id: 'x' + uid(), kind: 'trip', t, at: Date.now() }); if (state.data === t) state.data = LIB.trips[0] || makeTrip({}); save(); renderTrips(); } return; }
+  const r = ev.target.closest('[data-restoretrip]'); if (r) { const x = LIB.trash.find(z => z.id === r.dataset.restoretrip); if (x) { LIB.trash = LIB.trash.filter(z => z !== x); LIB.trips.push(x.t); save(); renderTrips(); toast('Viagem restaurada'); } return; }
+  if (ev.target.closest('#btnNewTrip')) { $('formNewTrip').reset(); openSheet('sheetNewTrip'); return; }
+  const o = ev.target.closest('[data-opentrip]'); if (o) openTrip(o.dataset.opentrip);
+});
+$('shellViagens').addEventListener('keydown', ev => { if (ev.key === 'Enter') { const o = ev.target.closest('[data-opentrip]'); if (o) openTrip(o.dataset.opentrip); } });
+$('ntCancel').onclick = () => closeSheet('sheetNewTrip');
+$('formNewTrip').onsubmit = ev => {
+  ev.preventDefault(); const from = $('ntFrom').value, to = $('ntTo').value; if (to < from) { toast('O fim tem que ser depois do início'); return; }
+  const t = makeTrip({ title: $('ntName').value.trim(), sub: $('ntSub').value.trim(), who: $('ntWho').value.trim(), from, to }); LIB.trips.push(t); save(); closeSheet('sheetNewTrip'); toast('Viagem criada'); openTrip(t.id);
+};
+/* copia o Roadtrip do site oficial (deste navegador ou da nuvem), sem mexer no original */
+function openExisting(name) { return new Promise(res => { try { const r = indexedDB.open(name); r.onupgradeneeded = () => { try { r.transaction.abort(); } catch (e) {} }; r.onsuccess = () => res(r.result); r.onerror = () => res(null); r.onblocked = () => res(null); } catch (e) { res(null); } }); }
+const idbReq = (db, s, fn) => new Promise((res, rej) => { const q = fn(db.transaction(s, 'readonly').objectStore(s)); q.onsuccess = () => res(q.result); q.onerror = () => rej(q.error); });
+if ($('btnImportRT')) $('btnImportRT').onclick = async () => {
+  if (!confirm('Copiar o Roadtrip do site oficial para este teste? O original não é alterado.')) return;
+  toast('Procurando o Roadtrip...'); let data = null, n = 0, from = 'deste navegador';
+  try { const db = await openExisting('roadtrip'); if (db) { if (db.objectStoreNames.contains('kv')) { data = await idbReq(db, 'kv', s => s.get('data4')); if (data && db.objectStoreNames.contains('media')) { for (const k of await idbReq(db, 'media', s => s.getAllKeys())) { const b = await idbReq(db, 'media', s => s.get(k)); if (b) { await store.put('media', k, b); n++; } } } } db.close(); } } catch (e) { console.warn(e); }
+  if (!data && location.protocol.startsWith('http')) { try { const r = await fetch(new URL('../dados/data.json', location.href).href + '?t=' + Date.now(), { cache: 'no-store' }); if (r.ok) { data = await r.json(); from = 'da nuvem'; } } catch (e) {} }
+  if (!data || !data.days) { toast('Não encontrei o Roadtrip neste navegador nem na nuvem'); return; }
+  data.id = 't' + uid(); data.trip = data.trip || {}; data.trip.title = (data.trip.title || 'Roadtrip') + ' (cópia)'; LIB.trips.push(data); normLib(); save(); renderTrips();
+  toast(`Roadtrip copiado ${from}${n ? ` com ${n} arquivos` : ''}`);
+};
+
+/* ---------- ÁLBUNS ---------- */
+const AB = { id: null, name: '', mode: 'periodo', from: '', to: '', months: [], trips: [], picked: [], off: [], tpl: 'editorial', theme: '', ex: true };
+function allPhotos() {
+  const out = [];
+  for (const mo of LIB.moments) for (const m of mo.media) if (isImg(m)) out.push({ key: `m|${mo.id}|${m.id}`, id: m.id, date: mo.date, time: m.time || mo.time || '', cap: m.cap || '', title: mo.title || '', place: mo.place ? mo.place.label : '', text: mo.text || '', ex: !!m.example });
+  for (const t of LIB.trips) for (const d of t.days) {
+    for (const m of d.media || []) if (isImg(m)) out.push({ key: `t|${t.id}|${d.id}|${m.id}`, id: m.id, date: d.date, time: m.time || '', cap: m.cap || '', title: d.title || '', place: '', text: d.note || '', ex: !!m.example, tripId: t.id, trip: t.trip.title });
+    for (const e of dayItems(d)) for (const m of e.media || []) if (isImg(m)) out.push({ key: `e|${t.id}|${e.id}|${m.id}`, id: m.id, date: d.date, time: e.time || '', cap: m.cap || '', title: e.title || d.title || '', place: e.loc ? e.loc.label : '', text: e.text || '', ex: !!m.example, tripId: t.id, trip: t.trip.title });
+  }
+  for (const m of LIB.inbox) if (isImg(m)) out.push({ key: 'i|' + m.id, id: m.id, date: '', time: '', cap: m.cap || '', title: '', place: '', text: '', ex: !!m.example });
+  return out;
+}
+const byDT = (a, b) => (a.date || '9999').localeCompare(b.date || '9999') || (a.time || '99').localeCompare(b.time || '99');
+function abPool(s) {
+  const all = allPhotos().filter(p => s.ex || !p.ex); let r;
+  if (s.mode === 'periodo') r = all.filter(p => p.date && (!s.from || p.date >= s.from) && (!s.to || p.date <= s.to));
+  else if (s.mode === 'meses') r = all.filter(p => p.date && s.months.includes(p.date.slice(0, 7)));
+  else if (s.mode === 'viagens') r = all.filter(p => s.trips.includes(p.tripId));
+  else r = all.filter(p => s.picked.includes(p.key));
+  return r.sort(byDT);
+}
+const abFinal = s => abPool(s).filter(p => !s.off.includes(p.key));
+function abDesc(s) {
+  if (s.mode === 'periodo') return s.from || s.to ? `De ${s.from ? fmtShort(toDate(s.from)) + '/' + s.from.slice(0, 4) : 'início'} a ${s.to ? fmtShort(toDate(s.to)) + '/' + s.to.slice(0, 4) : 'hoje'}` : 'Todas as datas';
+  if (s.mode === 'meses') return s.months.map(k => MON[+k.slice(5) - 1] + '/' + k.slice(2, 4)).join(', ') || 'Nenhum mês';
+  if (s.mode === 'viagens') return s.trips.map(id => (LIB.trips.find(t => t.id === id) || { trip: { title: '?' } }).trip.title).join(', ') || 'Nenhuma viagem';
+  return 'Fotos escolhidas';
+}
+function renderAlbums() {
+  if (!AB.from && !AB.to && AB.mode === 'periodo' && !AB.id) { AB.from = `${LIB.year}-01-01`; AB.to = `${LIB.year}-12-31`; }
+  $('abTitle').textContent = AB.id ? 'Editar álbum' : 'Montar álbum'; $('abNew').hidden = !AB.id; $('abName').value = AB.name; $('abEx').checked = AB.ex;
+  document.querySelectorAll('[data-amode]').forEach(b => b.classList.toggle('on', b.dataset.amode === AB.mode));
+  const all = allPhotos().filter(p => AB.ex || !p.ex); let o = '';
+  if (AB.mode === 'periodo') { const y = LIB.year; o = `<div class="abdates"><div class="field"><label for="abFrom">De</label><input type="date" id="abFrom" value="${AB.from}"></div><div class="field"><label for="abTo">Até</label><input type="date" id="abTo" value="${AB.to}"></div><div class="achips"><button type="button" data-range="year">Ano de ${y}</button><button type="button" data-range="month">Este mês</button><button type="button" data-range="30">Últimos 30 dias</button></div></div>`; }
+  if (AB.mode === 'meses') { const c = {}; all.forEach(p => { if (p.date) c[p.date.slice(0, 7)] = (c[p.date.slice(0, 7)] || 0) + 1; }); const ks = Object.keys(c).sort(); o = ks.length ? `<div class="achips">${ks.map(k => `<button type="button" data-month="${k}" class="${AB.months.includes(k) ? 'on' : ''}">${MON[+k.slice(5) - 1]}/${k.slice(2, 4)}<small>${c[k]}</small></button>`).join('')}</div>` : '<div class="hint">Nenhuma foto com data ainda.</div>'; }
+  if (AB.mode === 'viagens') o = LIB.trips.length ? `<div class="achips">${LIB.trips.map(t => `<button type="button" data-tripsel="${t.id}" class="${AB.trips.includes(t.id) ? 'on' : ''}">${esc(t.trip.title)}<small>${all.filter(p => p.tripId === t.id).length}</small></button>`).join('')}</div>` : '<div class="hint">Nenhuma viagem ainda.</div>';
+  if (AB.mode === 'fotos') o = '<div class="hint">Toque nas fotos que entram no álbum (as sem data também aparecem aqui).</div>';
+  $('abOpts').innerHTML = o;
+  const pool = AB.mode === 'fotos' ? all.sort(byDT) : abPool(AB), fin = abFinal(AB), nd = new Set(fin.map(p => p.date || '-')).size;
+  const pages = AB.tpl === 'cinema' ? fin.length : AB.tpl === 'mosaico' ? Math.ceil(fin.length / 6) + nd : AB.tpl === 'polaroid' ? Math.ceil(fin.length / 3) + nd : Math.ceil(fin.length / 2) + nd;
+  $('abCount').innerHTML = `<b>${fin.length}</b> ${fin.length === 1 ? 'foto' : 'fotos'} · ${plural(fin.length ? nd : 0, 'dia', 'dias')} · cerca de ${fin.length ? pages + 2 : 0} páginas${AB.mode !== 'fotos' && pool.length ? ' · toque numa foto para tirar do álbum' : ''}`;
+  $('abPreview').innerHTML = pool.slice(0, 400).map(p => { const on = AB.mode === 'fotos' ? AB.picked.includes(p.key) : !AB.off.includes(p.key); return `<button type="button" class="ap${on ? '' : ' off'}" data-ap="${esc(p.key)}" title="${esc([p.date ? fmtShort(toDate(p.date)) : 'sem data', p.title].filter(Boolean).join(' · '))}"><img data-mid="${esc(p.id)}" alt="" loading="lazy"></button>`; }).join('');
+  $('abTpls').innerHTML = Object.entries(ALBUMS).map(([k, [n]]) => `<button type="button" data-atpl="${k}" class="${AB.tpl === k ? 'on' : ''}">${n}</button>`).join('');
+  const th = AB.theme || LIB.theme; $('abThemes').innerHTML = Object.entries(THEMES).map(([k, t]) => `<button type="button" data-atheme="${k}" class="${th === k ? 'on' : ''}"><span class="sw">${t.sw.map(c => `<i style="background:${c}"></i>`).join('')}</span>${t.name}</button>`).join('');
+  $('abList').innerHTML = LIB.albums.length ? LIB.albums.map(a => { const ps = abFinal(a); return `<div class="acard"><div class="cv">${ps[0] ? `<img data-mid="${esc(ps[0].id)}" alt="">` : '<span></span>'}<div>${ps.slice(1, 3).map(p => `<img data-mid="${esc(p.id)}" alt="">`).join('')}</div></div><div class="bd"><b>${esc(a.name)}</b><small>${esc(abDesc(a))} · ${plural(ps.length, 'foto', 'fotos')} · ${ALBUMS[a.tpl] ? ALBUMS[a.tpl][0] : ''}</small><div class="r"><button type="button" class="pill" data-aopen="${a.id}">Abrir</button><button type="button" class="pill solid" data-apdf="${a.id}">PDF</button><button type="button" class="pill ed" data-adel="${a.id}">Excluir</button></div></div></div>`; }).join('') : '<div class="hint">Nenhum álbum salvo ainda.</div>';
+  hydrate($('shellAlbuns'));
+}
+$('shellAlbuns').addEventListener('click', ev => {
+  const t = ev.target; let b;
+  if ((b = t.closest('[data-amode]'))) { AB.mode = b.dataset.amode; renderAlbums(); return; }
+  if ((b = t.closest('[data-range]'))) { const now = new Date(); if (b.dataset.range === 'year') { AB.from = `${LIB.year}-01-01`; AB.to = `${LIB.year}-12-31`; } else if (b.dataset.range === 'month') { AB.from = ds2(new Date(now.getFullYear(), now.getMonth(), 1)); AB.to = ds2(new Date(now.getFullYear(), now.getMonth() + 1, 0)); } else { AB.from = ds2(new Date(now.getTime() - 30 * 864e5)); AB.to = todayStr(); } renderAlbums(); return; }
+  if ((b = t.closest('[data-month]'))) { const k = b.dataset.month; AB.months = AB.months.includes(k) ? AB.months.filter(x => x !== k) : AB.months.concat(k); renderAlbums(); return; }
+  if ((b = t.closest('[data-tripsel]'))) { const k = b.dataset.tripsel; AB.trips = AB.trips.includes(k) ? AB.trips.filter(x => x !== k) : AB.trips.concat(k); renderAlbums(); return; }
+  if ((b = t.closest('[data-ap]'))) { const k = b.dataset.ap; const arr = AB.mode === 'fotos' ? 'picked' : 'off'; AB[arr] = AB[arr].includes(k) ? AB[arr].filter(x => x !== k) : AB[arr].concat(k); renderAlbums(); return; }
+  if ((b = t.closest('[data-atpl]'))) { AB.tpl = b.dataset.atpl; renderAlbums(); return; }
+  if ((b = t.closest('[data-atheme]'))) { AB.theme = b.dataset.atheme; renderAlbums(); return; }
+  if ((b = t.closest('[data-aopen]'))) { const a = LIB.albums.find(x => x.id === b.dataset.aopen); if (a) { Object.assign(AB, JSON.parse(JSON.stringify(a))); renderAlbums(); window.scrollTo({ top: 0, behavior: 'smooth' }); } return; }
+  if ((b = t.closest('[data-apdf]'))) { const a = LIB.albums.find(x => x.id === b.dataset.apdf); if (a) albumPdf(a); return; }
+  if ((b = t.closest('[data-adel]'))) { const a = LIB.albums.find(x => x.id === b.dataset.adel); if (a && confirm(`Excluir o álbum "${a.name}"? As fotos continuam no site.`)) { LIB.albums = LIB.albums.filter(x => x !== a); if (AB.id === a.id) AB.id = null; save(); renderAlbums(); } }
+});
+$('shellAlbuns').addEventListener('change', ev => { if (ev.target.id === 'abFrom') { AB.from = ev.target.value; renderAlbums(); } if (ev.target.id === 'abTo') { AB.to = ev.target.value; renderAlbums(); } if (ev.target.id === 'abEx') { AB.ex = ev.target.checked; renderAlbums(); } });
+$('abName').addEventListener('input', () => { AB.name = $('abName').value; });
+const abSpec = () => ({ ...JSON.parse(JSON.stringify(AB)), name: AB.name.trim() || 'Álbum ' + (abDesc(AB) || '') });
+$('abSave').onclick = () => { const s = abSpec(); if (!abFinal(s).length) { toast('Esse álbum está sem fotos'); return; } if (!s.id) s.id = 'a' + uid(); s.updatedAt = Date.now(); const i = LIB.albums.findIndex(x => x.id === s.id); if (i >= 0) LIB.albums[i] = s; else LIB.albums.unshift(s); AB.id = s.id; AB.name = s.name; save(); renderAlbums(); toast('Álbum salvo'); };
+$('abNew').onclick = () => { Object.assign(AB, { id: null, name: '', mode: 'periodo', from: '', to: '', months: [], trips: [], picked: [], off: [], tpl: 'editorial', theme: '', ex: true }); renderAlbums(); };
+$('abPdf').onclick = () => albumPdf(abSpec());
+
+async function albumPdf(spec) {
+  const st = s => { $('abStatus').textContent = s; };
+  if (!window.jspdf) { toast('Sem conexão para carregar o gerador de PDF'); return; }
+  const ps = abFinal(spec); if (!ps.length) { toast('Esse álbum está sem fotos'); return; }
+  $('abPdf').disabled = true; st('Montando o PDF...');
+  try {
+    const { jsPDF } = window.jspdf; const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+    const prev = state.data.theme; state.data.theme = spec.theme || LIB.theme; const k = pdfKit(pdf); state.data.theme = prev; k.title = spec.name;
+    const { W, H, M, INK, SUN, MUTED, PAPER, WHITE, label, head, body, footer, newPage } = k;
+    const groups = []; for (const p of ps) { const g = groups[groups.length - 1]; if (g && g.date === p.date) g.items.push(p); else groups.push({ date: p.date, items: [p] }); }
+    const photo = async (p, max) => { const im = await loadImg(p.id); return im ? imgData(im, max || 1500) : null; };
+    const capOf = p => [p.cap, p.cap ? '' : p.title, p.time].filter(Boolean).join('  ·  ');
+    const ghead = (g, color, sub) => { const dt = toDate(g.date); label(dt ? fmtLong(dt) : 'Sem data', M, M + 4, 8, SUN); const titles = [...new Set(g.items.map(p => p.trip ? p.trip : p.title).filter(Boolean))].slice(0, 3).join('  ·  '); head(titles || (dt ? fmtShort(dt) : 'Fotos'), M, M + 15, 20, color || INK, 'left', W - 2 * M); if (sub) { pdf.setFont('helvetica', 'normal'); pdf.setFontSize(8); pdf.setTextColor(...MUTED); pdf.text(sub, W - M, M + 4, { align: 'right' }); } };
+    /* capa */
+    pdf.setFillColor(18, 18, 18); pdf.rect(0, 0, W, H, 'F'); const c0 = await photo(ps[0], 1800); if (c0) await drawCover(pdf, c0, 0, 0, W, H);
+    pdf.setFillColor(18, 18, 18); pdf.setGState(new pdf.GState({ opacity: 0.55 })); pdf.rect(0, H * 0.45, W, H * 0.55, 'F'); pdf.setGState(new pdf.GState({ opacity: 1 }));
+    label('Álbum', M, M + 4, 8, WHITE); head(spec.name, M, H - 58, 54, WHITE, 'left', W - 2 * M);
+    pdf.setFont('times', 'italic'); pdf.setFontSize(16); pdf.setTextColor(...WHITE); pdf.text(abDesc(spec), M, H - 40);
+    label(`${plural(ps.length, 'foto', 'fotos')}   ·   ${plural(groups.length, 'dia', 'dias')}`, M, H - 26, 9, WHITE);
+    for (const [gi, g] of groups.entries()) {
+      st(`Página do dia ${gi + 1} de ${groups.length}...`);
+      const places = [...new Set(g.items.map(p => p.place).filter(Boolean))].slice(0, 3).join(' · '), texts = [...new Set(g.items.map(p => p.text).filter(Boolean))].slice(0, 2).join('\n\n');
+      if (spec.tpl === 'cinema') {
+        for (const p of g.items) { const d = await photo(p, 1800); if (!d) continue; newPage([12, 12, 12]); await drawCover(pdf, d, 0, 0, W, H - 24); pdf.setFillColor(12, 12, 12); pdf.rect(0, H - 24, W, 24, 'F'); const dt = toDate(p.date); label(dt ? fmtLong(dt) : 'Sem data', M, H - 14, 7.5, SUN); pdf.setFont('times', 'italic'); pdf.setFontSize(13); pdf.setTextColor(...WHITE); pdf.text(pdf.splitTextToSize(capOf(p) || p.place || '', W - 2 * M - 80)[0] || '', M, H - 6.5); label(spec.name, W - M, H - 7, 6.5, [150, 150, 150], 'right'); }
+        continue;
+      }
+      if (spec.tpl === 'mosaico') {
+        for (let i = 0; i < g.items.length; i += 6) {
+          const ch = g.items.slice(i, i + 6); newPage(PAPER); ghead(g, null, places);
+          const y0 = M + 22, cols = ch.length <= 2 ? ch.length : 3, rows = Math.ceil(ch.length / cols), gw = 3, cw = (W - 2 * M - (cols - 1) * gw) / cols, chh = (H - 16 - y0 - (rows - 1) * gw) / rows;
+          for (const [j, p] of ch.entries()) { const d = await photo(p, 1100); if (d) await drawCover(pdf, d, M + (j % cols) * (cw + gw), y0 + Math.floor(j / cols) * (chh + gw), cw, chh); }
+          footer();
+        }
+        continue;
+      }
+      if (spec.tpl === 'polaroid') {
+        for (let i = 0; i < g.items.length; i += 3) {
+          const ch = g.items.slice(i, i + 3); newPage(PAPER); ghead(g, null, places);
+          const fw = 80, fh = 96, gap = (W - 2 * M - 3 * fw) / 2, y = M + 34;
+          for (const [j, p] of ch.entries()) { const x = M + j * (fw + gap) + (ch.length < 3 ? (3 - ch.length) * (fw + gap) / 2 : 0), dy = (j % 2 ? 6 : 0); pdf.setFillColor(205, 200, 190); pdf.rect(x + 1.5, y + dy + 1.8, fw, fh, 'F'); pdf.setFillColor(255, 255, 255); pdf.rect(x, y + dy, fw, fh, 'F'); const d = await photo(p, 900); if (d) await drawCover(pdf, d, x + 5, y + dy + 5, fw - 10, fw - 10); pdf.setFont('times', 'italic'); pdf.setFontSize(12); pdf.setTextColor(...INK); const cl = pdf.splitTextToSize(capOf(p) || p.place || ' ', fw - 10).slice(0, 2); pdf.text(cl, x + fw / 2, y + dy + fw + 4, { align: 'center' }); }
+          if (i === 0 && texts) body(texts, M, H - 30, 10, MUTED, W - 2 * M, 'italic');
+          footer();
+        }
+        continue;
+      }
+      /* editorial: uma foto grande, uma menor e o texto */
+      for (let i = 0; i < g.items.length; i += 2) {
+        const ch = g.items.slice(i, i + 2); newPage(WHITE); ghead(g);
+        const y0 = M + 24, hh = H - 18 - y0, bw = 172, x1 = M + bw + 6, w1 = W - M - x1;
+        const d0 = await photo(ch[0], 1500); if (d0) await drawCover(pdf, d0, M, y0, bw, hh);
+        let ty = y0;
+        if (ch[1]) { const d1 = await photo(ch[1], 900); if (d1) await drawCover(pdf, d1, x1, y0, w1, 64); ty = y0 + 72; }
+        label(ch.map(capOf).filter(Boolean).join('  /  ').slice(0, 90) || 'Fotos', x1, ty, 6.5, MUTED); ty += 7;
+        if (places) { pdf.setFont('helvetica', 'bold'); pdf.setFontSize(8.5); pdf.setTextColor(...SUN); const pl = pdf.splitTextToSize(places, w1); pdf.text(pl, x1, ty); ty += pl.length * 4 + 3; }
+        if (i === 0 && texts) body(texts, x1, ty + 2, 11, INK, w1, 'italic');
+        footer();
+      }
+    }
+    newPage([18, 18, 18]); label('Fim', W / 2, H / 2 - 22, 8, WHITE, 'center'); pdf.setFont('times', 'italic'); pdf.setFontSize(34); pdf.setTextColor(...WHITE); pdf.text(spec.name, W / 2, H / 2, { align: 'center' });
+    label(`${plural(ps.length, 'foto', 'fotos')}  ·  ${plural(groups.length, 'dia', 'dias')}`, W / 2, H / 2 + 14, 8, [200, 200, 200], 'center');
+    st('Pronto. Baixando o PDF...'); pdf.save(`${spec.name.replace(/[\\/:*?"<>|]+/g, '').trim() || 'Album'} - album.pdf`); toast('Álbum gerado');
+  } catch (e) { console.error(e); st('Não consegui gerar o PDF: ' + (e.message || e)); }
+  $('abPdf').disabled = false;
+}
+
+/* ---------- início: um só site, um só pacote de dados (ano, viagens, álbuns) ---------- */
+/* aceita o formato antigo (só o Roadtrip) e transforma na biblioteca nova, sem perder nada */
+function toLib(x) {
+  if (!x) return null; if (x.trips) return x;
+  if (x.days) { const t = x; t.id = t.id || 'roadtrip'; const y = +String((t.days[0] || {}).date || '').slice(0, 4); return { v: 1, theme: t.theme || 'offwhite', year: y || new Date().getFullYear(), moments: [], inbox: [], trips: [t], albums: [], trash: [], mext: { ...(t.mext || {}) }, updatedAt: t.updatedAt || 0 }; }
+  return null;
+}
+$('btnCloud2').onclick = () => openCloud();
 (async () => {
-  try { await store.open(); state.data = (await store.get('kv', 'data4')) || null; } catch (e) { state.data = null; }
-  if (!state.data) { state.data = seed(); try { await store.put('kv', 'data4', state.data); for (const [n, b64] of Object.entries(ROUTE_SEED)) { const bin = atob(b64); const arr = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i); await store.put('media', 'route-' + n, new Blob([arr], { type: 'image/jpeg' })); } } catch (e) {} }
-  state.data.trash = state.data.trash || [];
-  state.data.expenses = state.data.expenses || []; state.data.trash = state.data.trash || []; state.view = 'diario'; await migrateRoutes();
+  let local = null;
+  try { await store.open(); local = toLib(await store.get('kv', 'lib')) || toLib(await store.get('kv', 'data4')); } catch (e) { local = null; }
+  if (!local) local = await seedLib();
+  LIB = local; normLib();
   cloud.detect();
   if (cloud.on) {
-    const remote = await cloud.pullData();
-    if (remote && remote.days) {
-      if (!cloud.token || (remote.updatedAt || 0) > (state.data.updatedAt || 0)) { state.data = remote; state.data.expenses = state.data.expenses || []; state.data.trash = state.data.trash || []; try { await store.put('kv', 'data4', state.data); } catch (e) {} }
-      else if (cloud.token && (state.data.updatedAt || 0) > (remote.updatedAt || 0)) cloud.scheduleData();
+    const remote = toLib(await cloud.pullData());
+    if (remote) {
+      if (!cloud.token || (remote.updatedAt || 0) > (LIB.updatedAt || 0)) { LIB = remote; normLib(); }
+      else if (cloud.token && (LIB.updatedAt || 0) > (remote.updatedAt || 0)) cloud.scheduleData();
       setReadOnly(!cloud.token);
     } else setReadOnly(false);
     cloud.setStatus(cloud.token ? 'ok' : 'off', cloud.token ? 'Conectado como editor' : (remote ? 'Modo visualização' : 'Nuvem não configurada'));
   }
-  await renderAll();
-  const byHash = () => { if (location.hash === '#financeiro') setView('financeiro'); else if (location.hash === '#lixeira') setView('lixeira'); else if (location.hash === '#mapa') setView('mapa'); else if (state.view !== 'diario' && !location.hash) setView('diario'); };
-  byHash(); window.addEventListener('hashchange', byHash);
+  try { await store.put('kv', 'lib', LIB); } catch (e) {}
+  const rt = LIB.trips.find(t => t.id === 'roadtrip'); if (rt) { state.data = rt; try { await migrateRoutes(); } catch (e) {} }
+  state.data = LIB.trips[0] || makeTrip({}); state.data.theme = LIB.theme; state.view = 'diario';
+  applyTheme(); showShell('ano');
 })();
+
+$('btnPresenca2').onclick = startPresenca;
 })();
 </script>
 </body>
