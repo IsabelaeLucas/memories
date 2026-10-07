@@ -685,6 +685,24 @@ body:has(.selbar:not([hidden])) .mplayer{display:none}
 #plyBox iframe.sp{height:352px}
 #plyBox iframe.sp1{height:152px}
 .cover .tmusic{justify-self:start;align-self:start;width:max-content;max-width:100%}
+/* financeiro: por pessoa */
+.fin .people{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);display:grid;gap:12px}
+.pphead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.ppcfg{display:flex;gap:10px;flex-wrap:wrap}
+.ppcfg label{display:grid;gap:3px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.ppcfg input,.ppcfg select{font:500 14px var(--ui);letter-spacing:0;text-transform:none;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);min-width:180px}
+.ppgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.ppgrid div{background:var(--paper);border:1px solid var(--line);padding:10px 12px;display:grid}
+.ppgrid b{font-family:var(--head);font-size:22px;font-weight:800;line-height:1.05}
+.ppgrid span{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.ppl{display:flex;gap:8px;flex-wrap:wrap}
+.ppl div{border:1px solid var(--line);border-radius:10px;padding:8px 12px;display:grid;gap:1px;min-width:150px}
+.ppl b{font-family:var(--head);font-size:16px}
+.ppl span{font-size:12px;color:var(--ink-2)}
+.ppl small{font-size:11px;font-weight:700}
+.ppl small.ok{color:var(--ok)}.ppl small.owe{color:var(--sun)}
+.ppl.pays div{min-width:110px}
+.payrow select{width:100%}
 
 </style>
 </head>
@@ -996,6 +1014,7 @@ body:has(.selbar:not([hidden])) .mplayer{display:none}
     <div class="tabs" id="finTabs"></div>
     <div class="tbl"><table id="finTable"></table></div>
     <div class="fuel" id="fuel"></div>
+    <div class="people" id="finPeople"></div>
     <div class="finacts">
       <button class="pill sun" id="btnAddExpense">+ Lançar gasto</button>
       <button class="pill" id="btnFinPdf">Relatório financeiro (PDF)</button>
@@ -1062,6 +1081,10 @@ body:has(.selbar:not([hidden])) .mplayer{display:none}
       <div class="field"><label for="fValor">Valor (R$)</label><input type="number" id="fValor" step="0.01" min="0" placeholder="0,00" inputmode="decimal"></div>
       <div class="field"><label for="fStatus">Situação</label><select id="fStatus"><option value="">sem custo</option><option value="estimado">estimado</option><option value="areservar">a reservar</option><option value="reservado">reservado</option><option value="pago">pago</option></select></div>
       <div class="field"><label for="fIg">Instagram</label><input type="text" id="fIg" placeholder="@perfil"></div>
+    <div class="row2 payrow">
+      <div class="field"><label for="fPayer">Pagador</label><select id="fPayer"></select></div>
+      <div class="field"><label for="fPay">Formato</label><select id="fPay"></select></div>
+    </div>
     </div>
     <div class="field">
       <label for="fLoc">Localização</label>
@@ -1105,6 +1128,10 @@ body:has(.selbar:not([hidden])) .mplayer{display:none}
     <div class="row2">
       <div class="field"><label for="xValor">Valor (R$)</label><input type="number" id="xValor" step="0.01" min="0" required inputmode="decimal"></div>
       <div class="field"><label for="xStatus">Situação</label><select id="xStatus"><option value="pago">pago</option><option value="estimado">estimado</option><option value="areservar">a reservar</option><option value="reservado">reservado</option></select></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="xPayer">Pagador</label><select id="xPayer"></select></div>
+      <div class="field"><label for="xPay">Formato</label><select id="xPay"></select></div>
     </div>
     <div class="field">
       <span class="lbl">Comprovante (opcional)</span>
@@ -1287,6 +1314,7 @@ const ROUTE_SEED = {"1": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDR
 const COLLAGES = { diagonal: ['Diagonal', 'Cortes em diagonal e um círculo, estilo revista.'], circles: ['Círculos', 'Fotos redondas em tamanhos diferentes.'], frames: ['Molduras', 'Fotos impressas, levemente giradas.'], polaroid: ['Polaroid', 'Fotos instantâneas com fita e legenda à mão.'], film: ['Filme', 'Tira de negativos sobre fundo escuro.'] };
 const ALBUMS = { editorial: ['Editorial', 'Uma página por programação: fotos de um lado, texto do outro.'], mosaico: ['Mosaico', 'Páginas cheias de fotos em grade, textos ao final do dia.'], polaroid: ['Polaroid', 'Três fotos por página com moldura e legenda à mão.'], cinema: ['Cinema', 'Uma foto por página, sangrada, com faixa de legenda.'] };
 const CATS = { transporte: ['Transporte', '#456A8A'], alimentacao: ['Alimentação', '#A87554'], atracoes: ['Atrações', '#713D3D'], hospedagem: ['Hospedagem', '#264F59'], outros: ['Outros', '#594036'] };
+const PAYS = { debito: 'Débito', pix: 'Pix', credito: 'Crédito', dinheiro: 'Dinheiro' };
 const STATUS = { pago: 'pago', reservado: 'reservado', areservar: 'a reservar', estimado: 'estimado' };
 
 /* ---------- roteiro inicial ---------- */
@@ -1481,12 +1509,31 @@ function finRows() {
   const t = state.data.trip, rows = [];
   for (const d of days()) {
     const n = dayIndex(d);
-    for (const e of dayItems(d)) if (e.valor != null && e.valor !== '' && !isNaN(e.valor)) rows.push({ kind: 'item', id: e.id, day: n, date: d.date, label: e.title, cat: e.cat || 'outros', valor: +e.valor, status: e.status || 'estimado', docs: e.docs || [] });
-    if (d.km) rows.push({ kind: 'fuel', id: d.id, day: n, date: d.date, label: `Combustível estimado (${d.km} km)`, cat: 'transporte', valor: d.km / (t.kmPerL || 8.5) * (t.fuelPrice || 4.1), status: 'estimado', docs: [] });
+    for (const e of dayItems(d)) if (e.valor != null && e.valor !== '' && !isNaN(e.valor)) rows.push({ kind: 'item', id: e.id, day: n, date: d.date, label: e.title, cat: e.cat || 'outros', valor: +e.valor, status: e.status || 'estimado', docs: e.docs || [], payer: e.payer || '', pay: e.pay || '' });
+    if (d.km) rows.push({ kind: 'fuel', id: d.id, day: n, date: d.date, label: `Combustível estimado (${d.km} km)`, cat: 'transporte', valor: d.km / (t.kmPerL || 8.5) * (t.fuelPrice || 4.1), status: 'estimado', docs: [], payer: '', pay: '' });
   }
-  for (const x of state.data.expenses) { if (!x.date && x.dayId) { const dd = findDay(x.dayId); if (dd) x.date = dd.date; } const d = dayOf(x.date); rows.push({ kind: 'exp', id: x.id, day: d ? dayIndex(d) : 0, date: x.date || '', label: x.label, cat: x.cat || 'outros', valor: +x.valor, status: x.status || 'pago', docs: x.docs || [] }); }
+  for (const x of state.data.expenses) { if (!x.date && x.dayId) { const dd = findDay(x.dayId); if (dd) x.date = dd.date; } const d = dayOf(x.date); rows.push({ kind: 'exp', id: x.id, day: d ? dayIndex(d) : 0, date: x.date || '', label: x.label, cat: x.cat || 'outros', valor: +x.valor, status: x.status || 'pago', docs: x.docs || [], payer: x.payer || '', pay: x.pay || '' }); }
   rows.sort((a, b) => (a.date || '9').localeCompare(b.date || '9') || a.day - b.day || a.label.localeCompare(b.label));
   return rows;
+}
+/* pessoas da viagem e rateio */
+function payers() { const t = state.data.trip; let p = Array.isArray(t.payers) ? t.payers.filter(Boolean) : []; if (!p.length) p = String(t.who || '').split(/\s*(?:&|,| e )\s*/i).map(x => x.trim()).filter(Boolean); return p; }
+function payerOptions(sel) { return '<option value="">—</option>' + payers().map(p => `<option value="${esc(p)}" ${sel === p ? 'selected' : ''}>${esc(p)}</option>`).join('') + '<option value="Dividido" ' + (sel === 'Dividido' ? 'selected' : '') + '>Dividido</option>'; }
+function payOptions(sel) { const d = sel || state.data.trip.payDefault || ''; return '<option value="">—</option>' + Object.entries(PAYS).map(([k, n]) => `<option value="${k}" ${d === k ? 'selected' : ''}>${n}</option>`).join(''); }
+function splitTotals(rows) {
+  const ps = payers(), n = Math.max(ps.length, 1), tot = rows.reduce((s, r) => s + r.valor, 0), paid = {}; ps.forEach(p => { paid[p] = 0; });
+  let pagoTot = 0; for (const r of rows) { if (r.status !== 'pago') continue; pagoTot += r.valor; if (r.payer && paid[r.payer] != null) paid[r.payer] += r.valor; else if (r.payer === 'Dividido' || !r.payer) ps.forEach(p => { paid[p] += r.valor / n; }); }
+  const byPay = {}; for (const r of rows) { if (!r.pay) continue; byPay[r.pay] = (byPay[r.pay] || 0) + r.valor; }
+  return { ps, n, tot, perPerson: tot / n, pagoTot, perPersonPago: pagoTot / n, paid, byPay };
+}
+function renderPeople(rows) {
+  const t = state.data.trip, S = splitTotals(rows), el = $('finPeople'); if (!el) return;
+  el.innerHTML = `<div class="pphead"><div class="eyebrow">Por pessoa</div><div class="ppcfg"><label>Pessoas (separe por vírgula)<input type="text" id="ppNames" value="${esc(payers().join(', '))}" placeholder="ex.: Ana, Bruno"></label><label>Formato padrão<select id="ppPay">${payOptions(t.payDefault || '')}</select></label></div></div>
+    <div class="ppgrid"><div><b>${brl(S.tot)}</b><span>total previsto</span></div><div><b>${brl(S.perPerson)}</b><span>por pessoa (${S.n})</span></div><div><b>${brl(S.pagoTot)}</b><span>já pago</span></div><div><b>${brl(S.perPersonPago)}</b><span>pago, por pessoa</span></div></div>
+    ${S.ps.length ? `<div class="ppl">${S.ps.map(p => { const d = S.paid[p] - S.perPersonPago; return `<div><b>${esc(p)}</b><span>pagou ${brl(S.paid[p])}</span><small class="${d >= 0 ? 'ok' : 'owe'}">${Math.abs(d) < 0.005 ? 'em dia' : d > 0 ? 'tem a receber ' + brl(d) : 'deve ' + brl(-d)}</small></div>`; }).join('')}</div>` : '<div class="hint">Escreva os nomes acima para ver quanto cada um pagou e o acerto entre vocês.</div>'}
+    ${Object.keys(S.byPay).length ? `<div class="ppl pays">${Object.entries(S.byPay).map(([k, v]) => `<div><b>${PAYS[k]}</b><span>${brl(v)}</span></div>`).join('')}</div>` : ''}`;
+  $('ppNames').onchange = () => { t.payers = $('ppNames').value.split(',').map(x => x.trim()).filter(Boolean); save(); renderFin(); };
+  $('ppPay').onchange = () => { t.payDefault = $('ppPay').value; save(); renderFin(); };
 }
 function renderFin() {
   const rows = finRows(), t = state.data.trip, tot = rows.reduce((s, r) => s + r.valor, 0), pago = rows.filter(r => r.status === 'pago').reduce((s, r) => s + r.valor, 0);
@@ -1494,11 +1541,12 @@ function renderFin() {
   $('finCats').innerHTML = Object.entries(CATS).map(([k, [n, c]]) => { const rs = rows.filter(r => r.cat === k), v = rs.reduce((s, r) => s + r.valor, 0), p = rs.filter(r => r.status === 'pago').reduce((s, r) => s + r.valor, 0); return `<button type="button" class="cat ${state.finTab === k ? 'on' : ''}" style="--cc:${c}" data-fintab="${k}"><span class="nm">${n}</span><span class="v">${brl(v)}</span><span class="s">${rs.length} ${rs.length === 1 ? 'item' : 'itens'} · pago ${brl(p)}</span><span class="bar"><i style="width:${tot ? Math.round(v / tot * 100) : 0}%"></i></span></button>`; }).join('');
   $('finTabs').innerHTML = [['todos', 'Todos'], ...Object.entries(CATS).map(([k, [n]]) => [k, n])].map(([k, n]) => `<button type="button" class="${state.finTab === k ? 'on' : ''}" data-fintab="${k}">${n}</button>`).join('');
   const vis = state.finTab === 'todos' ? rows : rows.filter(r => r.cat === state.finTab), vt = vis.reduce((s, r) => s + r.valor, 0);
-  $('finTable').innerHTML = `<thead><tr><th>Dia</th><th>Data</th><th>Item</th><th>Categoria</th><th>Situação</th><th class="num">Valor</th><th></th></tr></thead><tbody>` +
-    vis.map(r => `<tr><td>${r.day ? pad(r.day) : '—'}</td><td>${r.date ? fmtShort(toDate(r.date)) : '—'}</td><td>${esc(r.label)}${r.docs.length ? ' ' + r.docs.map(dc => `<button type="button" class="chip tk" data-opendoc="${esc(dc.id)}" data-docname="${esc(dc.name)}" style="padding:2px 8px;margin-left:4px">${ICON_TK}${esc(dc.name.length > 18 ? dc.name.slice(0, 16) + '…' : dc.name)}</button>`).join('') : ''}</td><td><span class="dot" style="--cc:${CATS[r.cat][1]}"></span>${CATS[r.cat][0]}</td><td><span class="status ${r.status}">${STATUS[r.status] || r.status}</span></td><td class="num">${brl(r.valor)}</td><td class="rowacts">${r.kind === 'fuel' ? `<button type="button" data-editday="${esc(r.id)}">Editar</button><button type="button" data-zerokm="${esc(r.id)}">Excluir</button>` : `<button type="button" data-editexp="${r.kind}:${esc(r.id)}">Editar</button><button type="button" data-delexp="${r.kind}:${esc(r.id)}">Excluir</button>`}</td></tr>`).join('') +
-    `</tbody><tfoot><tr><td colspan="5">${state.finTab === 'todos' ? 'Total' : CATS[state.finTab][0]} · ${vis.length} itens</td><td class="num">${brl(vt)}</td><td></td></tr></tfoot>`;
+  $('finTable').innerHTML = `<thead><tr><th>Dia</th><th>Data</th><th>Item</th><th>Categoria</th><th>Situação</th><th>Pagador</th><th>Formato</th><th class="num">Valor</th><th></th></tr></thead><tbody>` +
+    vis.map(r => `<tr><td>${r.day ? pad(r.day) : '—'}</td><td>${r.date ? fmtShort(toDate(r.date)) : '—'}</td><td>${esc(r.label)}${r.docs.length ? ' ' + r.docs.map(dc => `<button type="button" class="chip tk" data-opendoc="${esc(dc.id)}" data-docname="${esc(dc.name)}" style="padding:2px 8px;margin-left:4px">${ICON_TK}${esc(dc.name.length > 18 ? dc.name.slice(0, 16) + '…' : dc.name)}</button>`).join('') : ''}</td><td><span class="dot" style="--cc:${CATS[r.cat][1]}"></span>${CATS[r.cat][0]}</td><td><span class="status ${r.status}">${STATUS[r.status] || r.status}</span></td><td>${esc(r.payer || (r.kind === 'fuel' ? '' : '—'))}</td><td>${PAYS[r.pay] || (r.kind === 'fuel' ? '' : '—')}</td><td class="num">${brl(r.valor)}</td><td class="rowacts">${r.kind === 'fuel' ? `<button type="button" data-editday="${esc(r.id)}">Editar</button><button type="button" data-zerokm="${esc(r.id)}">Excluir</button>` : `<button type="button" data-editexp="${r.kind}:${esc(r.id)}">Editar</button><button type="button" data-delexp="${r.kind}:${esc(r.id)}">Excluir</button>`}</td></tr>`).join('') +
+    `</tbody><tfoot><tr><td colspan="7">${state.finTab === 'todos' ? 'Total' : CATS[state.finTab][0]} · ${vis.length} itens</td><td class="num">${brl(vt)}</td><td></td></tr></tfoot>`;
   const km = days().reduce((s, d) => s + (+d.km || 0), 0), fuelTot = rows.filter(r => r.kind === 'fuel').reduce((s, r) => s + r.valor, 0);
   $('fuel').innerHTML = `<label>Etanol (R$/L)<input type="number" step="0.01" id="fuelPrice" value="${t.fuelPrice}"></label><label>Consumo (km/L)<input type="number" step="0.1" id="kmPerL" value="${t.kmPerL}"></label><div><div class="eyebrow">Estrada</div><b style="font-family:var(--head);font-size:24px">${km.toLocaleString('pt-BR')} km</b></div><div><div class="eyebrow">Combustível</div><b style="font-family:var(--head);font-size:24px">${brl(fuelTot)}</b></div>`;
+  renderPeople(rows);
   $('fuelPrice').onchange = () => { t.fuelPrice = +$('fuelPrice').value || 0; save(); renderFin(); };
   $('kmPerL').onchange = () => { t.kmPerL = +$('kmPerL').value || 1; save(); renderFin(); };
 }
@@ -1687,12 +1735,12 @@ $('previews').addEventListener('click', ev => { const k = ev.target.closest('[da
 $('docList').addEventListener('click', ev => { const k = ev.target.closest('[data-rmdk]'), p = ev.target.closest('[data-rmdp]'); if (k) state.docsKeep.splice(+k.dataset.rmdk, 1); if (p) state.docsPending.splice(+p.dataset.rmdp, 1); if (k || p) renderDocs(); });
 $('fFiles').addEventListener('change', () => { for (const f of $('fFiles').files) state.pending.push({ file: f, kind: f.type.startsWith('video/') ? 'video' : 'image', url: URL.createObjectURL(f) }); $('fFiles').value = ''; renderPreviews(); });
 $('fDocs').addEventListener('change', () => { for (const f of $('fDocs').files) state.docsPending.push(f); $('fDocs').value = ''; renderDocs(); });
-function openNew(dayId) { resetForm(dayId); $('entryFormTitle').textContent = 'Nova programação'; openSheet('sheetEntry'); }
+function openNew(dayId) { resetForm(dayId); $('fPayer').innerHTML = payerOptions(''); $('fPay').innerHTML = payOptions(''); $('entryFormTitle').textContent = 'Nova programação'; openSheet('sheetEntry'); }
 $('btnAdd').onclick = () => openNew(currentDayId());
 function openEdit(id, focus) {
   const f = findItem(id); if (!f) return; const { d, e } = f;
   resetForm(d.id); state.editing = id; $('entryFormTitle').textContent = 'Editar programação';
-  $('fTime').value = e.time || ''; $('fTitle').value = e.title || ''; $('fCat').value = e.cat || ''; $('fStatus').value = e.status || ''; $('fValor').value = e.valor != null ? e.valor : ''; $('fIg').value = e.ig || ''; $('fLink').value = e.link || '';
+  $('fTime').value = e.time || ''; $('fTitle').value = e.title || ''; $('fCat').value = e.cat || ''; $('fStatus').value = e.status || ''; $('fValor').value = e.valor != null ? e.valor : ''; $('fPayer').innerHTML = payerOptions(e.payer || ''); $('fPay').innerHTML = payOptions(e.pay || ''); $('fIg').value = e.ig || ''; $('fLink').value = e.link || '';
   $('fLoc').value = e.loc ? (e.loc.url || (e.loc.lat != null ? `${e.loc.lat},${e.loc.lng}` : e.loc.label)) : ''; $('fLoc').dispatchEvent(new Event('input'));
   $('fText').value = e.text || ''; $('fObs').value = e.obs || ''; $('fVideo').value = e.videoUrl || '';
   state.keep = (e.media || []).map(m => ({ ...m })); state.docsKeep = (e.docs || []).map(x => ({ ...x })); renderPreviews(); renderDocs(); openSheet('sheetEntry');
@@ -1705,7 +1753,7 @@ $('formEntry').onsubmit = async ev => {
   try {
     const media = state.keep.slice().concat(await storeFiles(state.pending, setStatus)); const docs = state.docsKeep.slice().concat(await storeDocs(state.docsPending));
     const v = $('fValor').value;
-    const doc = { time: $('fTime').value.trim(), title: $('fTitle').value.trim(), cat: $('fCat').value, status: $('fStatus').value, valor: v === '' ? null : +v, ig: $('fIg').value.trim().replace(/^@/, ''), link: $('fLink').value.trim(), text: $('fText').value.trim(), obs: $('fObs').value.trim(), videoUrl: $('fVideo').value.trim(), media, docs, loc: parseLoc($('fLoc').value) };
+    const doc = { time: $('fTime').value.trim(), title: $('fTitle').value.trim(), cat: $('fCat').value, status: $('fStatus').value, valor: v === '' ? null : +v, payer: $('fPayer').value, pay: $('fPay').value, ig: $('fIg').value.trim().replace(/^@/, ''), link: $('fLink').value.trim(), text: $('fText').value.trim(), obs: $('fObs').value.trim(), videoUrl: $('fVideo').value.trim(), media, docs, loc: parseLoc($('fLoc').value) };
     if (doc.valor != null && !doc.status) doc.status = 'estimado';
     const target = findDay($('fDay').value) || days()[0];
     if (state.editing) { const { d, e } = findItem(state.editing); await delMedia((e.media || []).filter(m => !media.some(k => k.id === m.id)).concat((e.docs || []).filter(m => !docs.some(k => k.id === m.id)))); Object.assign(e, doc, { updatedAt: Date.now() }); if (d.id !== target.id) { d.items = d.items.filter(x => x.id !== e.id); target.items.push(e); } }
@@ -1724,6 +1772,7 @@ function openExpense(ref, date) {
   $('xDate').value = r ? (r.kind === 'item' ? r.d.date : r.x.date || '') : (date || (cd ? cd.date : ''));
   $('xCat').value = src ? (src.cat || 'outros') : (state.finTab !== 'todos' ? state.finTab : 'alimentacao');
   $('xLabel').value = src ? (r.kind === 'item' ? src.title : src.label) : ''; $('xValor').value = src && src.valor != null ? src.valor : ''; $('xStatus').value = src ? (src.status || 'estimado') : 'pago';
+  $('xPayer').innerHTML = payerOptions(src ? src.payer || '' : ''); $('xPay').innerHTML = payOptions(src ? (src.pay || '') : '');
   $('xHint').textContent = r && r.kind === 'item' ? `Este custo faz parte da programação "${r.e.title}" (dia ${pad(dayIndex(r.d))}). Mudar a data move a programação para o dia com essa data. "Remover custo" tira só o valor; a programação continua.` : 'A data define em qual dia o gasto aparece. Sem dia com essa data, ele aparece só no financeiro.';
   $('btnDelExpense').hidden = !r; $('btnDelExpense').textContent = r && r.kind === 'item' ? 'Remover custo' : 'Excluir'; $('btnDelExpense').dataset.armed = '';
   $('expStatus').textContent = ''; $('btnSaveExpense').disabled = false; renderXDocs(); openSheet('sheetExpense');
@@ -1736,16 +1785,16 @@ $('formExpense').onsubmit = async ev => {
   ev.preventDefault(); const btn = $('btnSaveExpense'); btn.disabled = true;
   try {
     const docs = state.xDocsKeep.concat(await storeDocs(state.xDocsPending));
-    const date = $('xDate').value, cat = $('xCat').value, label = $('xLabel').value.trim(), valor = +$('xValor').value || 0, status = $('xStatus').value;
+    const date = $('xDate').value, cat = $('xCat').value, label = $('xLabel').value.trim(), valor = +$('xValor').value || 0, status = $('xStatus').value, payer = $('xPayer').value, pay = $('xPay').value;
     const r = expRef(state.editingExp);
     if (r && r.kind === 'item') {
       await delMedia((r.e.docs || []).filter(m => !docs.some(k => k.id === m.id)));
-      Object.assign(r.e, { title: label, cat, valor, status, docs, updatedAt: Date.now() });
+      Object.assign(r.e, { title: label, cat, valor, status, docs, payer, pay, updatedAt: Date.now() });
       const target = dayOf(date);
       if (date && target && target.id !== r.d.id) { r.d.items = r.d.items.filter(z => z.id !== r.e.id); target.items.push(r.e); toast(`Programação movida para o dia ${pad(dayIndex(target))}`); }
       else if (date && !target && date !== r.d.date) toast('Não há dia com essa data; a programação ficou no mesmo dia');
-    } else if (r) { await delMedia((r.x.docs || []).filter(m => !docs.some(k => k.id === m.id))); Object.assign(r.x, { date, cat, label, valor, status, docs }); delete r.x.dayId; }
-    else state.data.expenses.push({ id: 'x' + uid(), date, cat, label, valor, status, docs, createdAt: Date.now() });
+    } else if (r) { await delMedia((r.x.docs || []).filter(m => !docs.some(k => k.id === m.id))); Object.assign(r.x, { date, cat, label, valor, status, docs, payer, pay }); delete r.x.dayId; }
+    else state.data.expenses.push({ id: 'x' + uid(), date, cat, label, valor, status, docs, payer, pay, createdAt: Date.now() });
     save(); closeSheet('sheetExpense'); await renderAll(); toast('Gasto salvo');
   } catch (e) { $('expStatus').textContent = e.message || 'Não foi possível salvar.'; btn.disabled = false; }
 };
@@ -2115,6 +2164,7 @@ function finSummaryPage(pdf, k, full) {
   k.newPage(PAPER); k.label('Financeiro', M, M + 4, 8, SUN); k.head('Custos da viagem', M, M + 18, 26);
   const tot = rows.reduce((s, r) => s + r.valor, 0), pago = rows.filter(r => r.status === 'pago').reduce((s, r) => s + r.valor, 0);
   pdf.setFont('helvetica', 'normal'); pdf.setFontSize(10); pdf.setTextColor(...MUTED); pdf.text(`Total previsto ${brl(tot)}   ·   pago ${brl(pago)}   ·   falta ${brl(tot - pago)}`, M, M + 27);
+  { const S = splitTotals(rows); pdf.setFont('helvetica', 'bold'); pdf.setFontSize(10); pdf.setTextColor(...INK); pdf.text(`Por pessoa (${S.n}): ${brl(S.perPerson)} previsto   ·   ${brl(S.perPersonPago)} já pago` + (S.ps.length ? '   ·   ' + S.ps.map(p => `${p} pagou ${brl(S.paid[p])}`).join('   ·   ') : ''), M, M + 32); }
   let x = M; const cw = (W - 2 * M - 4 * 6) / 5; let y = M + 36;
   for (const [c, [n, col]] of Object.entries(CATS)) { const rs = rows.filter(r => r.cat === c), v = rs.reduce((s, r) => s + r.valor, 0); pdf.setFillColor(...k.hex(col)); pdf.rect(x, y, cw, 1.6, 'F'); k.label(n, x, y + 8, 7); pdf.setFont('times', 'bold'); pdf.setFontSize(16); pdf.setTextColor(...INK); pdf.text(brl(v), x, y + 16); pdf.setFont('helvetica', 'normal'); pdf.setFontSize(7.5); pdf.setTextColor(...MUTED); pdf.text(`${rs.length} itens · ${tot ? Math.round(v / tot * 100) : 0}%`, x, y + 21); x += cw + 6; }
   y += 30; pdf.setFillColor(...LINE); pdf.rect(M, y, W - 2 * M, 5, 'F'); x = M; for (const [c, [, col]] of Object.entries(CATS)) { const v = rows.filter(r => r.cat === c).reduce((s, r) => s + r.valor, 0); const w = tot ? (W - 2 * M) * v / tot : 0; pdf.setFillColor(...k.hex(col)); pdf.rect(x, y, w, 5, 'F'); x += w; }
@@ -2124,11 +2174,12 @@ function finSummaryPage(pdf, k, full) {
     const rs = rows.filter(r => r.cat === c); if (!rs.length) continue;
     if (y > H - 50) { k.footer(); k.newPage(PAPER); y = M + 10; }
     pdf.setFillColor(...k.hex(col)); pdf.rect(M, y - 4, 2.5, 7, 'F'); k.head(n, M + 6, y + 1.5, 16); pdf.setFont('times', 'bold'); pdf.setFontSize(13); pdf.text(brl(rs.reduce((s, r) => s + r.valor, 0)), W - M, y + 1.5, { align: 'right' }); y += 8; pdf.setDrawColor(...INK); pdf.line(M, y, W - M, y); y += 6;
-    for (const r of rs) { if (y > H - 22) { k.footer(); k.newPage(PAPER); y = M + 10; } pdf.setFont('helvetica', 'normal'); pdf.setFontSize(9); pdf.setTextColor(...INK); pdf.text(r.day ? `Dia ${pad(r.day)}` : '—', M, y); pdf.text(r.label.slice(0, 64) + (r.docs.length ? '  [comprovante]' : ''), M + 18, y); pdf.setTextColor(...MUTED); pdf.text(STATUS[r.status] || '', W - M - 42, y); pdf.setTextColor(...INK); pdf.text(brl(r.valor), W - M, y, { align: 'right' }); pdf.setDrawColor(...LINE); pdf.line(M, y + 2, W - M, y + 2); y += 7; }
+    for (const r of rs) { if (y > H - 22) { k.footer(); k.newPage(PAPER); y = M + 10; } pdf.setFont('helvetica', 'normal'); pdf.setFontSize(9); pdf.setTextColor(...INK); pdf.text(r.day ? `Dia ${pad(r.day)}` : '—', M, y); pdf.text(r.label.slice(0, 48) + (r.docs.length ? '  [comprovante]' : '') + (r.payer || r.pay ? `  (${[r.payer, PAYS[r.pay]].filter(Boolean).join(', ')})` : ''), M + 18, y); pdf.setTextColor(...MUTED); pdf.text(STATUS[r.status] || '', W - M - 42, y); pdf.setTextColor(...INK); pdf.text(brl(r.valor), W - M, y, { align: 'right' }); pdf.setDrawColor(...LINE); pdf.line(M, y + 2, W - M, y + 2); y += 7; }
     y += 8;
   }
   if (y > H - 30) { k.footer(); k.newPage(PAPER); y = M + 10; }
   pdf.setFont('helvetica', 'bold'); pdf.setFontSize(12); pdf.setTextColor(...INK); pdf.text('Total previsto', M, y + 4); pdf.text(brl(tot), W - M, y + 4, { align: 'right' });
+  { const S = splitTotals(rows); pdf.setFont('helvetica', 'normal'); pdf.setFontSize(10); pdf.text(`Por pessoa (${S.n} ${S.n === 1 ? 'pessoa' : 'pessoas'})`, M, y + 10); pdf.text(brl(S.perPerson), W - M, y + 10, { align: 'right' }); let yy = y + 16; for (const p of S.ps) { const d = S.paid[p] - S.perPersonPago; pdf.setTextColor(...MUTED); pdf.text(`${p}: pagou ${brl(S.paid[p])}` + (Math.abs(d) < 0.005 ? '' : d > 0 ? ` (tem a receber ${brl(d)})` : ` (deve ${brl(-d)})`), M, yy); yy += 5; } y = yy - 10; }
   pdf.setFont('helvetica', 'normal'); pdf.setFontSize(8); pdf.setTextColor(...MUTED); pdf.text(`Combustível estimado com etanol a ${brl(t.fuelPrice)}/L e ${t.kmPerL} km/L (${days().reduce((s, d) => s + (+d.km || 0), 0)} km). Valores "estimado" e "a reservar" ainda podem mudar.`, M, y + 11); k.footer();
 }
 /* relatório financeiro independente */
