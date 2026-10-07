@@ -606,16 +606,7 @@ body.dragmode,body.dragmode *{cursor:grabbing!important;-webkit-user-select:none
 .sglist .t small{color:var(--muted);font-size:12px}
 .sglist .mv{display:inline-flex;gap:4px}
 .sgplay{width:42px;height:42px;border-radius:50%;border:0;background:var(--sun);color:var(--paper);display:grid;place-items:center;flex:none}
-.sgplay svg,.mpb svg{width:16px;height:16px;fill:currentColor;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round}
-.mplayer{position:fixed;left:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:28;width:min(380px,calc(100% - 24px));background:var(--ink);color:var(--paper);border-radius:999px;padding:6px 8px;display:flex;align-items:center;gap:4px;box-shadow:var(--shadow)}
-.in-trip .mplayer{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
-.mpb{width:36px;height:36px;border-radius:50%;border:0;background:transparent;color:var(--paper);display:grid;place-items:center;flex:none;font-size:20px;line-height:1}
-.mpb.main{background:var(--sun)}
-.mpinfo{flex:1;min-width:0;border:0;background:transparent;color:var(--paper);text-align:left;padding:0 6px;display:grid;gap:2px}
-.mpinfo b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mpinfo small{font-size:10px;opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mpbar{display:block;height:2px;background:color-mix(in srgb,var(--paper) 25%,transparent);border-radius:2px;overflow:hidden}
-.mpbar i{display:block;height:100%;width:0;background:var(--sun)}
+.sgplay svg{width:16px;height:16px;fill:currentColor;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round}
 .lyrics{white-space:pre-wrap;font-family:var(--head);font-weight:300;font-size:19px;line-height:1.55;color:var(--ink-2);max-height:60vh;overflow:auto;padding:4px 0}
 body:has(.selbar:not([hidden])) .mplayer{display:none}
 .plhead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:30px 0 12px;padding-top:20px;border-top:1px solid var(--line)}
@@ -703,6 +694,36 @@ body:has(.selbar:not([hidden])) .mplayer{display:none}
 .ppl small.ok{color:var(--ok)}.ppl small.owe{color:var(--sun)}
 .ppl.pays div{min-width:110px}
 .payrow select{width:100%}
+/* player do rodapé com playlist */
+.plcard{grid-template-columns:auto 1fr;align-items:center}
+.plcard.on{border-color:var(--sun);outline:1px solid var(--sun)}
+.plcard .plt b{font-size:17px}
+
+/* player do rodapé: fino, delicado, largura toda */
+.mplayer{position:fixed;left:0;right:0;bottom:0;z-index:28;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px 18px calc(8px + env(safe-area-inset-bottom,0px));display:grid;gap:4px;color:var(--ink)}
+.mptitle{border:0;background:transparent;color:var(--ink);text-align:center;padding:0;display:grid;gap:0;min-width:0;line-height:1.2}
+.mptitle b{font-family:var(--head);font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mptitle small{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mpline{padding:6px 0 2px;cursor:pointer;touch-action:none}
+.mptrack{display:block;position:relative;height:2px;background:color-mix(in srgb,var(--ink) 22%,transparent);border-radius:2px}
+.mpfill{display:block;height:100%;width:0;background:var(--ink);border-radius:2px}
+.mpdot{position:absolute;top:50%;left:0;width:11px;height:11px;border-radius:50%;background:var(--ink);transform:translate(-50%,-50%)}
+.mprow{display:flex;justify-content:center;align-items:center;gap:26px}
+.mpb{width:34px;height:34px;border-radius:50%;border:0;background:transparent;color:var(--ink);display:grid;place-items:center;padding:0}
+.mpb svg{width:20px;height:20px;fill:currentColor;stroke:currentColor;stroke-width:1.4;stroke-linejoin:round}
+.mpb svg.ln{fill:none;stroke-width:1.8;stroke-linecap:round}
+.mpb.main{width:46px;height:46px;background:var(--ink);color:var(--paper)}
+.mpb.main svg{width:20px;height:20px}
+#mpFav svg{fill:none;stroke-width:1.8}
+#mpFav.on svg{fill:var(--sun);stroke:var(--sun)}
+.mpembed{margin:0 -6px 6px;border-radius:10px;overflow:hidden;background:#000}
+.mpembed iframe{width:100%;aspect-ratio:16/9;height:auto;border:0;display:block}
+.mplayer.mini .mpembed{height:0;margin:0;overflow:hidden}
+.mplayer.mini .mpembed iframe{height:1px}
+body:has(.mplayer:not([hidden])) .fab-row{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+body:has(.mplayer:not([hidden])) .sfab{bottom:calc(108px + env(safe-area-inset-bottom,0px))}
+body:has(.mplayer:not([hidden])) .sview,body:has(.mplayer:not([hidden])) .end{padding-bottom:140px}
+@media (min-width:700px){ .mplayer{padding-left:max(18px,calc(50% - 260px));padding-right:max(18px,calc(50% - 260px))} }
 
 </style>
 </head>
@@ -810,11 +831,16 @@ body:has(.selbar:not([hidden])) .mplayer{display:none}
 <input type="file" id="sgFiles" accept="audio/*,.mp3,.m4a,.wav" multiple hidden>
 <audio id="sgAudio" preload="none"></audio>
 <div class="mplayer" id="mPlayer" hidden>
-  <button type="button" class="mpb" id="mpPrev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M18 5v14L8 12zM6 5v14"/></svg></button>
-  <button type="button" class="mpb main" id="mpPlay" aria-label="Tocar"></button>
-  <button type="button" class="mpb" id="mpNext" aria-label="Próxima"><svg viewBox="0 0 24 24"><path d="M6 5v14l10-7zM18 5v14"/></svg></button>
-  <button type="button" class="mpinfo" id="mpInfo"><b id="mpTitle"></b><small id="mpSub"></small><i class="mpbar"><i id="mpProg"></i></i></button>
-  <button type="button" class="mpb" id="mpClose" aria-label="Fechar">×</button>
+  <div class="mpembed" id="mpEmbed" hidden></div>
+  <button type="button" class="mptitle" id="mpInfo"><b id="mpTitle"></b><small id="mpSub"></small></button>
+  <div class="mpline" id="mpLine"><i class="mptrack"><i class="mpfill" id="mpProg"></i><i class="mpdot" id="mpDot"></i></i></div>
+  <div class="mprow">
+    <button type="button" class="mpb" id="mpFav" aria-label="Favorita"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.4 5 7 5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.6 0 5.8 3.6 4.5 6.8C19.5 16.4 12 21 12 21z"/></svg></button>
+    <button type="button" class="mpb" id="mpPrev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M18 5v14L8 12zM6 5v14"/></svg></button>
+    <button type="button" class="mpb main" id="mpPlay" aria-label="Tocar"></button>
+    <button type="button" class="mpb" id="mpNext" aria-label="Próxima"><svg viewBox="0 0 24 24"><path d="M6 5v14l10-7zM18 5v14"/></svg></button>
+    <button type="button" class="mpb" id="mpClose" aria-label="Fechar"><svg viewBox="0 0 24 24" class="ln"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg></button>
+  </div>
 </div>
 <div class="sheet" id="sheetSong" hidden>
   <form class="panel" id="formSong">
@@ -839,16 +865,7 @@ body:has(.selbar:not([hidden])) .mplayer{display:none}
     <div class="actions"><button type="button" class="btn" id="plCancel">Cancelar</button><button type="submit" class="btn primary">Adicionar</button></div>
   </form>
 </div>
-<div class="sheet" id="sheetPlay" hidden>
-  <div class="panel">
-    <div class="grab"></div>
-    <div class="eyebrow">Música da viagem</div>
-    <h2 id="plyTitle"></h2>
-    <div class="plcard" id="plyBox" style="border:0;padding:0;background:transparent"></div>
-    <div class="hint">Pode fechar este painel: a música continua tocando. Para parar, use "Parar".</div>
-    <div class="actions"><a class="btn" id="plyApp" target="_blank" rel="noopener">Abrir no app</a><button type="button" class="btn" id="plyStop">Parar</button><button type="button" class="btn primary" id="plyClose">Fechar</button></div>
-  </div>
-</div>
+>
 <div class="sheet" id="sheetLyrics" hidden>
   <div class="panel">
     <div class="grab"></div>
@@ -3013,7 +3030,7 @@ $('bkFile').addEventListener('change', async () => {
 
 /* ---------- MÚSICAS: playlist com os arquivos de áudio e as letras ---------- */
 const ICO_PLAY = '<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>', ICO_PAUSE = '<svg viewBox="0 0 24 24"><path d="M7 4h4v16H7zM13 4h4v16h-4z"/></svg>';
-const PL = { i: -1 }; const songs = () => (LIB.songs = LIB.songs || []);
+const PL = { i: -1, pl: null, plPlaying: false, spCtl: null, ytReady: false }; const songs = () => (LIB.songs = LIB.songs || []);
 const mmss = t => t && isFinite(t) ? `${Math.floor(t / 60)}:${pad(Math.floor(t % 60))}` : '';
 const AUDIO_EXT = { mp3: 'audio/mpeg', m4a: 'audio/mp4', aac: 'audio/aac', wav: 'audio/wav', ogg: 'audio/ogg', oga: 'audio/ogg', flac: 'audio/flac' };
 function renderSongs() {
@@ -3021,7 +3038,7 @@ function renderSongs() {
   const ss = songs(), a = $('sgAudio'), playing = !a.paused;
   $('sgPlayAll').hidden = !ss.length;
   $('sgList').innerHTML = ss.length ? ss.map((x, i) => `<li class="sg${i === PL.i ? ' on' : ''}"><button type="button" class="sgplay" data-sgplay="${i}" aria-label="Tocar">${i === PL.i && playing ? ICO_PAUSE : ICO_PLAY}</button>
-    <div class="t"><b>${esc(x.title)}</b><small>${[mmss(x.dur), x.lyrics ? 'com letra' : ''].filter(Boolean).join(' · ')}</small></div>
+    <div class="t"><b>${x.fav ? '♥ ' : ''}${esc(x.title)}</b><small>${[mmss(x.dur), x.lyrics ? 'com letra' : ''].filter(Boolean).join(' · ')}</small></div>
     ${x.lyrics ? `<button type="button" class="pill" data-sglyr="${i}">Letra</button>` : ''}
     <span class="mv ed"><button type="button" class="pill" data-sgup="${i}" aria-label="Subir">↑</button><button type="button" class="pill" data-sgdn="${i}" aria-label="Descer">↓</button></span>
     <button type="button" class="pill ed" data-sgedit="${i}">Editar</button></li>`).join('') : `<li class="yempty big">Nenhuma música ainda.${state.ro ? '' : ' Toque em "+ Músicas" e escolha os arquivos.'}</li>`;
@@ -3029,15 +3046,17 @@ function renderSongs() {
 async function playSong(i) {
   const s = songs()[i]; if (!s) return; const a = $('sgAudio'); PL.i = i;
   if (a.dataset.mid !== s.mid) { const u = await mediaUrl(s.mid); if (!u) { toast('Não consegui carregar esta música'); return; } a.src = u; a.dataset.mid = s.mid; }
-  pauseEmbeds(); try { await a.play(); } catch (e) { toast('Toque no play para começar'); }
+  stopPlaylist(); try { await a.play(); } catch (e) { toast('Toque no play para começar'); }
   updPlayer();
 }
-function togglePlay() { const a = $('sgAudio'); if (PL.i < 0) { playSong(0); return; } if (a.paused) a.play().catch(() => {}); else a.pause(); }
-function nextSong(d) { const n = songs().length; if (!n) return; playSong(((PL.i < 0 ? 0 : PL.i + d) % n + n) % n); }
+function togglePlay() { if (PL.pl) { plCmd('toggle'); return; } const a = $('sgAudio'); if (PL.i < 0) { playSong(0); return; } if (a.paused) a.play().catch(() => {}); else a.pause(); }
+function nextSong(d) { if (PL.pl) { plCmd(d > 0 ? 'next' : 'prev'); return; } const n = songs().length; if (!n) return; playSong(((PL.i < 0 ? 0 : PL.i + d) % n + n) % n); }
 function updPlayer() {
+  if (PL.pl) { const e = embedOf(PL.pl.url); $('mPlayer').hidden = false; $('mPlayer').classList.add('haspl'); $('mpTitle').textContent = PL.pl.title || (e.kind === 'spotify' ? 'Playlist do Spotify' : 'Playlist do YouTube'); $('mpSub').textContent = (e.kind === 'spotify' ? 'Spotify' : 'YouTube') + ($('mPlayer').classList.contains('mini') ? ' · toque para ver o player' : ' · toque para esconder o player'); $('mpPlay').innerHTML = PL.plPlaying ? ICO_PAUSE : ICO_PLAY; $('mpFav').classList.toggle('on', !!PL.pl.fav); renderTripMusic(); if (!$('shellMusicas').hidden) renderSongs(); return; }
+  $('mPlayer').classList.remove('haspl');
   const s = songs()[PL.i], a = $('sgAudio'); $('mPlayer').hidden = !s; if (!s) return;
   $('mpTitle').textContent = s.title; $('mpSub').textContent = s.lyrics ? 'Toque para ver a letra' : (mmss(s.dur) || '');
-  $('mpPlay').innerHTML = a.paused ? ICO_PLAY : ICO_PAUSE;
+  $('mpPlay').innerHTML = a.paused ? ICO_PLAY : ICO_PAUSE; $('mpFav').classList.toggle('on', !!s.fav);
   renderTripMusic();
   if (!$('shellMusicas').hidden) renderSongs();
   if ('mediaSession' in navigator) { try { navigator.mediaSession.metadata = new MediaMetadata({ title: s.title, artist: 'Nossas memórias' }); } catch (e) {} }
@@ -3045,13 +3064,24 @@ function updPlayer() {
 (() => {
   const a = $('sgAudio');
   a.addEventListener('play', updPlayer); a.addEventListener('pause', updPlayer); a.addEventListener('ended', () => nextSong(1));
-  a.addEventListener('timeupdate', () => { $('mpProg').style.width = (a.duration ? 100 * a.currentTime / a.duration : 0) + '%'; });
+  a.addEventListener('timeupdate', () => { setProg(a.duration ? a.currentTime / a.duration : 0); });
   a.addEventListener('error', () => { if (a.getAttribute('src')) toast('Não consegui tocar esta música'); });
   if ('mediaSession' in navigator) { try { navigator.mediaSession.setActionHandler('play', () => a.play()); navigator.mediaSession.setActionHandler('pause', () => a.pause()); navigator.mediaSession.setActionHandler('previoustrack', () => nextSong(-1)); navigator.mediaSession.setActionHandler('nexttrack', () => nextSong(1)); } catch (e) {} }
 })();
+function setProg(f) { f = Math.max(0, Math.min(1, f || 0)); $('mpProg').style.width = (f * 100) + '%'; $('mpDot').style.left = (f * 100) + '%'; }
+function seekTo(f) {
+  if (PL.pl) { const e = embedOf(PL.pl.url); if (e.kind === 'youtube' && PL.ytDur) { const fr = $('mpEmbed').querySelector('iframe.yt'); if (fr) fr.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo', args: [f * PL.ytDur, true] }), '*'); } else if (PL.spCtl && PL.spDur) PL.spCtl.seek(f * PL.spDur / 1000); setProg(f); return; }
+  const a = $('sgAudio'); if (a.duration) a.currentTime = f * a.duration;
+}
+(() => { const ln = $('mpLine'); let on = false; const at = ev => { const r = ln.getBoundingClientRect(); return (ev.clientX - r.left) / r.width; };
+  ln.addEventListener('pointerdown', ev => { on = true; ln.setPointerCapture(ev.pointerId); setProg(at(ev)); });
+  ln.addEventListener('pointermove', ev => { if (on) setProg(at(ev)); });
+  ln.addEventListener('pointerup', ev => { if (!on) return; on = false; seekTo(at(ev)); });
+})();
+$('mpFav').onclick = () => { if (PL.pl) { PL.pl.fav = !PL.pl.fav; } else { const s = songs()[PL.i]; if (!s) return; s.fav = !s.fav; } save(); updPlayer(); if (!$('shellMusicas').hidden) renderSongs(); };
 $('mpPlay').onclick = togglePlay; $('mpPrev').onclick = () => nextSong(-1); $('mpNext').onclick = () => nextSong(1);
-$('mpClose').onclick = () => { const a = $('sgAudio'); a.pause(); PL.i = -1; $('mPlayer').hidden = true; if (!$('shellMusicas').hidden) renderSongs(); };
-$('mpInfo').onclick = () => { const s = songs()[PL.i]; if (s) showLyrics(s); };
+$('mpClose').onclick = () => { const a = $('sgAudio'); a.pause(); PL.i = -1; stopPlaylist(); $('mPlayer').hidden = true; renderTripMusic(); if (!$('shellMusicas').hidden) renderSongs(); };
+$('mpInfo').onclick = () => { if (PL.pl) { $('mPlayer').classList.toggle('mini'); updPlayer(); return; } const s = songs()[PL.i]; if (s) showLyrics(s); };
 function showLyrics(s) { $('lyTitle').textContent = s.title; $('lyText').textContent = s.lyrics || 'Esta música ainda não tem letra.'; openSheet('sheetLyrics'); }
 $('lyClose').onclick = () => closeSheet('sheetLyrics');
 $('sgPlayAll').onclick = () => playSong(0);
@@ -3105,11 +3135,43 @@ function embedOf(u) {
 }
 function renderPlaylists() {
   const ps = LIB.playlists = LIB.playlists || [];
-  $('plList').innerHTML = ps.length ? ps.map((p, i) => { const e = embedOf(p.url); if (!e) return ''; return `<div class="plcard ${e.kind}"><div class="plt"><b>${esc(p.title || (e.kind === 'spotify' ? 'Spotify' : 'YouTube'))}</b><span class="tag">${e.kind === 'spotify' ? 'Spotify' : 'YouTube'}</span><a class="pill" href="${esc(p.url)}" target="_blank" rel="noopener">Abrir no app</a><span class="ed mv"><button type="button" class="pill" data-plup="${i}" aria-label="Subir">↑</button><button type="button" class="pill" data-pldn="${i}" aria-label="Descer">↓</button><button type="button" class="pill" data-pldel="${i}">Excluir</button></span></div>
-    <iframe src="${esc(e.src)}" loading="lazy" class="${e.kind === 'youtube' ? 'yt' : e.tall ? 'sp' : 'sp1'}" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="${esc(p.title || 'Playlist')}"></iframe></div>`; }).join('') : `<div class="hint">${state.ro ? 'Nenhuma playlist por link.' : 'Nenhuma playlist por link ainda. Toque em "+ Link".'}</div>`;
+  $('plList').innerHTML = ps.length ? ps.map((p, i) => { const e = embedOf(p.url); if (!e) return ''; const on = PL.pl && PL.pl.id === p.id; return `<div class="plcard ${e.kind}${on ? ' on' : ''}"><button type="button" class="sgplay" data-plplay="${i}" aria-label="Tocar">${on && PL.plPlaying ? ICO_PAUSE : ICO_PLAY}</button><div class="plt"><b>${esc(p.title || (e.kind === 'spotify' ? 'Playlist do Spotify' : 'Playlist do YouTube'))}</b><span class="tag">${e.kind === 'spotify' ? 'Spotify' : 'YouTube'}</span><a class="pill" href="${esc(p.url)}" target="_blank" rel="noopener">Abrir no app</a><span class="ed mv"><button type="button" class="pill" data-plup="${i}" aria-label="Subir">↑</button><button type="button" class="pill" data-pldn="${i}" aria-label="Descer">↓</button><button type="button" class="pill" data-pldel="${i}">Excluir</button></span></div></div>`; }).join('') : `<div class="hint">${state.ro ? 'Nenhuma playlist por link.' : 'Nenhuma playlist por link ainda. Toque em "+ Link".'}</div>`;
 }
+/* tocar uma playlist no player do rodapé: YouTube pela API do iframe, Spotify pela iFrame API */
+function playPlaylist(p) {
+  const e = embedOf(p.url); if (!e) return;
+  if (PL.pl && PL.pl.id === p.id) { plCmd('toggle'); return; }
+  const a = $('sgAudio'); a.pause(); PL.i = -1; stopPlaylist(); PL.pl = p; PL.plPlaying = false; $('mPlayer').classList.add('mini');
+  const box = $('mpEmbed'); box.hidden = false; box.innerHTML = '';
+  if (e.kind === 'youtube') {
+    const f = document.createElement('iframe'); f.className = 'yt'; f.allow = 'autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen = true; f.title = 'YouTube';
+    f.src = e.src.replace('&enablejsapi=1', '') + '&enablejsapi=1&autoplay=1&playsinline=1&origin=' + encodeURIComponent(location.origin);
+    box.appendChild(f); PL.ytReady = false; PL.ytPoke = setInterval(() => { const fr = $('mpEmbed').querySelector('iframe.yt'); if (fr) { try { fr.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 1, channel: 'widget' }), '*'); } catch (x) {} } if (PL.plPlaying) { clearInterval(PL.ytPoke); return; } ytCmd('playVideo'); }, 800); setTimeout(() => clearInterval(PL.ytPoke), 6000);
+  } else {
+    const holder = document.createElement('div'); box.appendChild(holder);
+    loadSpotifyApi().then(api => { if (PL.pl !== p) return; api.createController(holder, { uri: e.src.replace('https://open.spotify.com/embed/', 'spotify:').replace('/', ':'), width: '100%', height: e.tall ? 152 : 80, theme: 'dark' }, ctl => { if (PL.pl !== p) { try { ctl.destroy(); } catch (x) {} return; } PL.spCtl = ctl; ctl.addListener('playback_update', ev => { const was = PL.plPlaying; PL.plPlaying = !ev.data.isPaused; if (was !== PL.plPlaying) updPlayer(); if (ev.data.duration) { PL.spDur = ev.data.duration; setProg(ev.data.position / ev.data.duration); } }); ctl.addListener('ready', () => ctl.play()); try { ctl.play(); } catch (x) {} }); }).catch(() => toast('Não consegui carregar o player do Spotify. Use "Abrir no app".'));
+  }
+  updPlayer(); renderPlaylists(); renderTripMusic();
+}
+function stopPlaylist() { clearInterval(PL.ytPoke); if (PL.spCtl) { try { PL.spCtl.destroy(); } catch (e) {} PL.spCtl = null; } PL.pl = null; PL.plPlaying = false; const box = $('mpEmbed'); if (box) { box.innerHTML = ''; box.hidden = true; } $('mPlayer').classList.remove('haspl'); }
+function ytCmd(func) { const f = $('mpEmbed').querySelector('iframe.yt'); if (f) { try { f.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: [] }), '*'); } catch (e) {} } }
+function plCmd(c) {
+  if (!PL.pl) return; const e = embedOf(PL.pl.url);
+  if (e.kind === 'youtube') { ytCmd(c === 'toggle' ? (PL.plPlaying ? 'pauseVideo' : 'playVideo') : c === 'next' ? 'nextVideo' : 'previousVideo'); if (c === 'toggle') { PL.plPlaying = !PL.plPlaying; updPlayer(); renderPlaylists(); } }
+  else if (PL.spCtl) { if (c === 'toggle') PL.spCtl.togglePlay(); else toast('Pular faixa: use o próprio player do Spotify'); }
+}
+window.addEventListener('message', ev => {
+  if (!PL.pl || typeof ev.data !== 'string' || !/youtube/.test(ev.origin)) return;
+  let d; try { d = JSON.parse(ev.data); } catch (e) { return; }
+  const f = $('mpEmbed').querySelector('iframe.yt'); if (!f) return;
+  if (d.event === 'onReady') { PL.ytReady = true; f.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 1, channel: 'widget' }), '*'); ytCmd('playVideo'); }
+  if (d.event === 'onStateChange' || (d.event === 'infoDelivery' && d.info && d.info.playerState != null)) { const st = d.event === 'onStateChange' ? d.info : d.info.playerState; const was = PL.plPlaying; PL.plPlaying = st === 1 || st === 3; if (was !== PL.plPlaying) { updPlayer(); renderPlaylists(); } }
+  if (d.event === 'infoDelivery' && d.info && d.info.currentTime != null && d.info.duration) { PL.ytDur = d.info.duration; setProg(d.info.currentTime / d.info.duration); }
+});
+let spApiP = null;
+function loadSpotifyApi() { if (window.SpotifyIframeApi) return Promise.resolve(window.SpotifyIframeApi); if (spApiP) return spApiP; spApiP = new Promise((res, rej) => { window.onSpotifyIframeApiReady = api => { window.SpotifyIframeApi = api; res(api); }; const sc = document.createElement('script'); sc.src = 'https://open.spotify.com/embed/iframe-api/v1'; sc.async = true; sc.onerror = () => { spApiP = null; rej(new Error('spotify api')); }; document.head.appendChild(sc); setTimeout(() => rej(new Error('timeout')), 15000); }); return spApiP; }
 /* ao tocar uma música do site, pausa os vídeos do YouTube que estiverem tocando */
-function pauseEmbeds() { document.querySelectorAll('#plList iframe.yt').forEach(f => { try { f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*'); } catch (e) {} }); }
+function pauseEmbeds() { if (PL.pl && PL.plPlaying) plCmd('toggle'); }
 $('plAdd').onclick = () => { $('formPl').reset(); openSheet('sheetPl'); setTimeout(() => $('plUrl').focus(), 50); };
 $('plCancel').onclick = () => closeSheet('sheetPl');
 $('formPl').onsubmit = ev => {
@@ -3118,7 +3180,9 @@ $('formPl').onsubmit = ev => {
   LIB.playlists.push({ id: 'pl' + uid(), url, title: $('plName').value.trim(), createdAt: Date.now() }); save(); closeSheet('sheetPl'); renderPlaylists(); toast('Playlist adicionada');
 };
 $('plList').addEventListener('click', ev => {
-  if (state.ro) return; const t = ev.target; let b; const ps = LIB.playlists;
+  const t = ev.target; let b; const ps = LIB.playlists;
+  if ((b = t.closest('[data-plplay]'))) { playPlaylist(ps[+b.dataset.plplay]); return; }
+  if (state.ro) return;
   if ((b = t.closest('[data-plup]')) || (b = t.closest('[data-pldn]'))) { const i = +(b.dataset.plup ?? b.dataset.pldn), j = b.dataset.plup != null ? i - 1 : i + 1; if (j < 0 || j >= ps.length) return; [ps[i], ps[j]] = [ps[j], ps[i]]; save(); renderPlaylists(); return; }
   if ((b = t.closest('[data-pldel]'))) { const p = ps[+b.dataset.pldel]; if (p && confirm('Tirar esta playlist do site? (Ela continua no YouTube/Spotify.)')) { ps.splice(+b.dataset.pldel, 1); save(); renderPlaylists(); } }
 });
@@ -3139,13 +3203,10 @@ function tripMusic() {
 }
 function renderTripMusic() {
   const b = $('btnTripMusic'); if (!b) return; const m = tripMusic(); b.hidden = !m; if (!m) return;
-  const on = m.kind === 'song' && PL.i === m.i && !$('sgAudio').paused;
+  const on = m.kind === 'song' ? (PL.i === m.i && !$('sgAudio').paused) : (PL.pl && PL.pl.id === m.p.id && PL.plPlaying);
   b.innerHTML = `<i>${on ? ICO_PAUSE : ICO_PLAY}</i><span><small>Música da viagem</small><b>${esc(m.title)}</b></span>`;
 }
-$('btnTripMusic').onclick = () => { const m = tripMusic(); if (!m) return; if (m.kind === 'song') { if (PL.i === m.i) togglePlay(); else playSong(m.i); } else openPlay(m.p); };
-function openPlay(p) { const e = embedOf(p.url); if (!e) return; $('plyTitle').textContent = p.title || (e.kind === 'spotify' ? 'Spotify' : 'YouTube'); $('plyApp').href = p.url; if ($('plyBox').dataset.src !== e.src) { $('plyBox').dataset.src = e.src; $('plyBox').innerHTML = `<iframe src="${esc(e.src)}" class="${e.kind === 'youtube' ? 'yt' : e.tall ? 'sp' : 'sp1'}" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="Playlist"></iframe>`; } openSheet('sheetPlay'); }
-$('plyClose').onclick = () => closeSheet('sheetPlay');
-$('plyStop').onclick = () => { $('plyBox').innerHTML = ''; delete $('plyBox').dataset.src; closeSheet('sheetPlay'); };
+$('btnTripMusic').onclick = () => { const m = tripMusic(); if (!m) return; if (m.kind === 'song') { if (PL.i === m.i) togglePlay(); else playSong(m.i); } else playPlaylist(m.p); };
 $('btnTrip').addEventListener('click', () => { $('tMusic').innerHTML = musicOptions(state.data.trip.music || ''); });
 $('formTrip').addEventListener('submit', () => { state.data.trip.music = $('tMusic').value; }, true);
 renderAll = (orig => async (...a) => { const r = await orig(...a); renderTripMusic(); return r; })(renderAll);
